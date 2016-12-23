@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-/**
- * Creates  a text
- */
 'use strict'
+/**
+ * Creates  a text and display it on the video
+ */
 let Snowmix = require('../node-snowmix'),
     snowmix = Snowmix.new(),
     AsciiTable = require('ascii-table'),
@@ -13,6 +13,9 @@ if (!textString) throw new Error('Please provide a string as argument')
 snowmix.connect()
 .then(() => {
     return snowmix.texts.add({ string : textString })
+    .then(text => {
+        return text.show()
+    })
 }).then(() => {
     console.log('Done')
 }).finally(() => {

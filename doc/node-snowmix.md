@@ -58,7 +58,7 @@ snowmix.close().then(() => { console.log('All done') })
 <a name="Snowmix+populate"></a>
 
 ### snowmix.populate()
-Populates the information known about feeds, virutal feeds and texts from Snowmix.
+Populates the information known about feeds, virtual feeds and texts from Snowmix.
 
 **Kind**: instance method of <code>[Snowmix](#Snowmix)</code>  
 <a name="Snowmix+sendCommand"></a>

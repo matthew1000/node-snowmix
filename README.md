@@ -19,11 +19,11 @@ $ npm i --save node-snowmix
 
 Snowmix is a powerful video and audio mixer. This library helps you control Snowmix, and provides methods that make it easy to do common tasks, such as switching video and adding text.
 
-Support is currently limited to the following Snowmix concepts: feeds, vfeeds (virtual feeds), audio feeds, and texts.  Other things (e.g. images) can still be handled by sending the relevant Tcl commands.
+This library models and provides helper functions for *feeds*, *vfeeds* (virtual feeds), *audio feeds*, and *texts*. Other things (e.g. images) can still be handled by sending the relevant Tcl commands.
 
 This library does not currently help with the initial configuration of Snowmix, or with controlling the (gstreamer) inputs and outputs.
 
-## Usage
+# Usage
 
 `node-snowmix` is a class that needs instantiating, using the `new()` method.
 
@@ -39,6 +39,8 @@ snowmix = Snowmix.new({ port: 1234 })
 ```
 
 (Multiple Snowmix instances can be created if you are running multiple Snowmixes on different ports/hosts. If the same host/port is requested multiple times, the same `Snowmix` instance is supplied to prevent multiple identical connections.)
+
+### Sending raw Snowmix commands
 
 Snowmix is controlled by [a range of commands](http://snowmix.sourceforge.net/Documentation/reserved.html).
 Use this library to send any Snowmix command with `sendCommand()`:
@@ -106,7 +108,7 @@ It is hoped to offer more flexible offers (e.g. volume control) in the future. U
 
 ## Text
 
-To overlay text on your video:
+To overlay text on your video, create a 'Text' object, and then `show()` it.
 
 ```js
 var myText1 = snowmix.texts.add({ string: 'Snowmix is great!' })

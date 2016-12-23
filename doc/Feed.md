@@ -1,30 +1,45 @@
-<a name="FeedObject"></a>
+<a name="Feed"></a>
 
-## FeedObject
-A single video feed (not to be confused with a virutal feed).
+## Feed
+A single video feed (not to be confused with a vfeed - virtual video feed).
 
 **Kind**: global class  
+**Properties**
 
-* [FeedObject](#FeedObject)
-    * [.getVirtualFeedsUsingThisFeed()](#FeedObject+getVirtualFeedsUsingThisFeed) ⇒ <code>Array</code>
-    * [.getOrMakePrimaryVirtualFeed()](#FeedObject+getOrMakePrimaryVirtualFeed)
-    * [.switch()](#FeedObject+switch) ⇒ <code>Promise</code>
+| Name | Type | Description |
+| --- | --- | --- |
+| id | <code>integer</code> |  |
+| name | <code>string</code> |  |
+| state | <code>string</code> | e.g. 'STALLED' or 'PENDING' |
+| geometry | <code>array</code> | [x,y] |
+| live | <code>boolean</code> |  |
+| offset | <code>integer</code> |  |
+| socket | <code>string</code> |  |
+| frames | <code>integer</code> |  |
+| dropped | <code>integer</code> |  |
+| missed | <code>integer</code> |  |
 
-<a name="FeedObject+getVirtualFeedsUsingThisFeed"></a>
 
-### feedObject.getVirtualFeedsUsingThisFeed() ⇒ <code>Array</code>
-**Kind**: instance method of <code>[FeedObject](#FeedObject)</code>  
+* [Feed](#Feed)
+    * [.getVirtualFeedsUsingThisFeed()](#Feed+getVirtualFeedsUsingThisFeed) ⇒ <code>Array</code>
+    * [.getOrMakePrimaryVirtualFeed()](#Feed+getOrMakePrimaryVirtualFeed)
+    * [.switch()](#Feed+switch) ⇒ <code>Promise</code>
+
+<a name="Feed+getVirtualFeedsUsingThisFeed"></a>
+
+### feed.getVirtualFeedsUsingThisFeed() ⇒ <code>Array</code>
+**Kind**: instance method of <code>[Feed](#Feed)</code>  
 **Returns**: <code>Array</code> - of Vfeed objects  
-<a name="FeedObject+getOrMakePrimaryVirtualFeed"></a>
+<a name="Feed+getOrMakePrimaryVirtualFeed"></a>
 
-### feedObject.getOrMakePrimaryVirtualFeed()
+### feed.getOrMakePrimaryVirtualFeed()
 Finds, and if it can't be found makes, a 'primary' virtual feed for this video feed,
 i.e. one that is full-screen.
 
-**Kind**: instance method of <code>[FeedObject](#FeedObject)</code>  
-<a name="FeedObject+switch"></a>
+**Kind**: instance method of <code>[Feed](#Feed)</code>  
+<a name="Feed+switch"></a>
 
-### feedObject.switch() ⇒ <code>Promise</code>
+### feed.switch() ⇒ <code>Promise</code>
 Switch the output to this feed.
 
-**Kind**: instance method of <code>[FeedObject](#FeedObject)</code>  
+**Kind**: instance method of <code>[Feed](#Feed)</code>  

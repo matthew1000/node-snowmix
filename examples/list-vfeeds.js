@@ -12,7 +12,6 @@ snowmix.connect()
 .then(() => {
     let vfeeds = snowmix.vfeeds.all()
     if (vfeeds.length) {
-        console.log(vfeeds)
         console.log(
             new AsciiTable()
             .setHeading('ID', 'Name', 'State', 'Source type', 'Source ID', 'Geometry', 'Scale', 'Clip coordinates', 'Clip geometry')

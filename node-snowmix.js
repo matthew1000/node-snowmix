@@ -171,7 +171,7 @@ class Snowmix {
     }
 
     /**
-     * Populates the information known about feeds, virutal feeds and texts from Snowmix.
+     * Populates the information known about feeds, virtual feeds and texts from Snowmix.
      */
     populate() {
         return this.feeds.populate()

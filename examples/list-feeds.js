@@ -12,11 +12,10 @@ snowmix.connect()
 .then(() => {
     let feeds = snowmix.feeds.all()
     if (feeds.length) {
-        console.log(feeds)
         console.log(
             new AsciiTable()
-            .setHeading('ID', 'Name', 'State', 'Geometry', 'Is Live?')
-            .addRowMatrix(feeds.map(f => { return [f.id, f.name, f.state, f.geometry, f.live] }))
+            .setHeading('ID', 'Name', 'State', 'Geometry', 'Is Live?', 'Socket', 'Frames', 'Dropped', 'Missed')
+            .addRowMatrix(feeds.map(f => { return [f.id, f.name, f.state, f.geometry, f.live, f.socket, f.frames, f.dropped, f.missed] }))
             .toString()
         )
     }
