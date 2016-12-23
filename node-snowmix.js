@@ -37,14 +37,10 @@ exports.new = (host, port) => {
  * The main Snowmix class. Use snowmix.new() to construct.
  */
 class Snowmix {
-    /**
-     * Constructor
-     * @private (for external use, use .new above)
-     */
     constructor() {
         _.defaults(this, defaultValues)
         this.general    = new SnowmixGeneral(this)
-        this.command    = new SnowmixCommands(this)
+        this.commands   = new SnowmixCommands(this)
         this.feeds      = new SnowmixFeeds(this)
         this.vfeeds     = new SnowmixVfeeds(this)
         this.audiofeeds = new SnowmixAudiofeeds(this)

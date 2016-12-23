@@ -9,32 +9,21 @@ let Snowmix = require('../node-snowmix'),
     AsciiTable = require('ascii-table'),
     vfeedId = parseInt(process.argv[2])
 
+if (!vfeedId) {
+    console.error('Please provide a vfeed ID')
+    process.exit(1)
+}
+
 snowmix.connect()
 .then(() => {
-    if (vfeedId) {
-        let vfeed = snowmix.vfeeds.byId(vfeedId)
-        if (vfeed) {
-            return vfeed.switch().then(() => {
-                console.log('Done')
-            })
-        }
-        else {
-            console.log('No such vfeed')
-        }
+    let vfeed = snowmix.vfeeds.byId(vfeedId)
+    if (vfeed) {
+        return vfeed.switch().then(() => {
+            console.log('Done')
+        })
     }
     else {
-        let vfeeds = snowmix.vfeeds.all()
-        if (vfeeds.length) {
-            console.log('Provide the ID of the vfeed to show. Options are:\n' +
-                new AsciiTable()
-                .setHeading('ID', 'State', 'Source', 'Source ID', 'Coordinates', 'Geometry', 'Scale')
-                .addRowMatrix(vfeeds.map(f => { return [f.id, f.state, f.source, f.sourceId, f.coors, f.geometry, f.scale] }))
-                .toString()
-            )
-        }
-        else {
-            console.log('No vfeeds defined!')
-        }
+        console.log('No such vfeed')
     }
 })
 .then(() => {

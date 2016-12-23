@@ -27,7 +27,7 @@ If the command has no contents, returns [undefined]
 
 **Example**  
 ```js
-snowmix.command.listCommand('Show').then(arrayOfLines => { ... })
+snowmix.commands.listCommand('Show').then(arrayOfLines => { ... })
 ```
 <a name="SnowmixCommands+createCommand"></a>
 

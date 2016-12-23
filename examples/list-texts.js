@@ -14,8 +14,8 @@ snowmix.connect()
     if (texts.length) {
         console.log(
             new AsciiTable()
-            .setHeading('ID', 'String', 'Font ID', 'Anchor', 'Offset')
-            .addRowMatrix(texts.map(f => { return [f.id, f.string, f.fontId, f.anchor, f.offset] }))
+            .setHeading('ID', 'String', 'Showing?', 'Font ID', 'Anchor', 'Offset')
+            .addRowMatrix(texts.map(f => { return [f.id, f.string, f.showing, f.fontId, f.anchor, f.offset] }))
             .toString()
         )
     }

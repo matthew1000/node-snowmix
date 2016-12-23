@@ -11,18 +11,18 @@ it('Connect to Snowmix', function() {
 })
 
 it('Should make foo() command', function() {
-    return snowmix.command.createCommand('testCommand1', testLines)
+    return snowmix.commands.createCommand('testCommand1', testLines)
 })
 
 it('check foo() command', function() {
-    return snowmix.command.listCommand('testCommand1')
+    return snowmix.commands.listCommand('testCommand1')
     .then(lines => {
         expect(lines).to.deep.equal([undefined].concat(testLines))
     })
 })
 
 it('Should handle the checking of a command that does not exist', function() {
-    return snowmix.command.listCommand('rubbish')
+    return snowmix.commands.listCommand('rubbish')
     .then(lines => {
         expect(lines).to.be.undefined
     })

@@ -14,8 +14,8 @@ snowmix.connect()
     if (vfeeds.length) {
         console.log(
             new AsciiTable()
-            .setHeading('ID', 'Name', 'State', 'Source type', 'Source ID', 'Geometry', 'Scale', 'Clip coordinates', 'Clip geometry')
-            .addRowMatrix(vfeeds.map(f => { return [f.id, f.name, f.state, f.source, f.sourceId, f.geometry, f.scale, f.clipCoordinates, f.clipGeometry] }))
+            .setHeading('ID', 'Name', 'Showing?', 'State', 'Source type', 'Source ID', 'Geometry', 'Scale', 'Clip coordinates', 'Clip geometry')
+            .addRowMatrix(vfeeds.map(f => { return [f.id, f.name, f.showing, f.state, f.source, f.sourceId, f.geometry, f.scale, f.clipCoordinates, f.clipGeometry] }))
             .toString()
         )
     }

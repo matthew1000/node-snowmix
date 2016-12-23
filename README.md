@@ -69,7 +69,7 @@ Helper functions around video, audio and text overlays are available, and summar
 
 ## Video control
 
-In an OO style, video feeds, and virtual vide feeds, are given instances of the 'Feed' and 'Vfeed' class (respectively).
+In an OO style, video feeds, and virtual video feeds, are given instances of the 'Feed' and 'Vfeed' class (respectively).
 These are automatically populated when this library first connects to Snowmix.
 
 Access feeds by ID using `snowmix.feeds.byId(<FEED ID>)`
