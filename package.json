@@ -1,0 +1,25 @@
+{
+  "name": "node-snowmix",
+  "version": "0.0.1",
+  "description": "A Node.JS library to the Snowmix video mixer",
+  "main": "node-snowmix.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha --reporter spec"
+  },
+  "author": "Matthew Clark <snowmix@matthewc.co.uk>",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "camelcase": "^4.0.0",
+    "lodash": "^4.17.2",
+    "winston": "^2.3.0"
+  },
+  "engines": {
+    "node": ">=6.00"
+  },
+  "devDependencies": {
+    "ascii-table": "0.0.9",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
