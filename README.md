@@ -120,11 +120,11 @@ All fields can be overridden, such as `x` and `y` (to set the location) and `loc
 
 ## Full Documentation...
 
-...is available [here](./doc/doc.md).
+...is available [here](./doc/).
 
 ## Further examples...
 
-...can be found in the (examples/)[./examples/] directory.
+...can be found in the [examples/](./examples/) directory.
 
 ## Debugging (including seeing the commands & responses with Snowmix)
 
