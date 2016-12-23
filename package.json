@@ -8,6 +8,7 @@
   },
   "author": "Matthew Clark <snowmix@matthewc.co.uk>",
   "license": "ISC",
+  "repository": "matthew1000/node-snowmix",
   "dependencies": {
     "bluebird": "^3.4.6",
     "camelcase": "^4.0.0",

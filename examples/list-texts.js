@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Lists all texts
+ * Lists all texts as a table
  */
 'use strict'
 let Snowmix = require('../node-snowmix'),

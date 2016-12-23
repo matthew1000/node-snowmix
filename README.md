@@ -120,7 +120,7 @@ All fields can be overridden, such as `x` and `y` (to set the location) and `loc
 
 ## Full Documentation...
 
-...is available [here](./doc/).
+...is available [here](./doc#classes).
 
 ## Further examples...
 
