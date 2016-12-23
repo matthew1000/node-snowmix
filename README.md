@@ -8,6 +8,7 @@
 * Snowmix must be [downloaded & installed](http://snowmix.sourceforge.net/Intro/compileandinstall.html)
 * The gstreamer command-line, version 1.x, is also required. (Install this via your package manager.)
 * Node.JS must be version 6 or higher
+* If you haven't got a Node development underway, create one with `npm init`
 * Install node-snowmix using npm:
 
 ```shell
@@ -24,7 +25,7 @@ This library does not currently help with the initial configuration of Snowmix, 
 
 ## Usage
 
-`node-snowmix` is a class that needs instantiating.
+`node-snowmix` is a class that needs instantiating, using the `new()` method.
 
 ```js
 let Snowmix = require('node-snowmix'),
@@ -37,9 +38,9 @@ let Snowmix = require('node-snowmix'),
 snowmix = Snowmix.new({ port: 1234 })
 ```
 
-(Multiple Snowmix instances can be created you are running multiple Snowmixes on different ports/hosts. If the same host/port is requested multiple times, the same `Snowmix` instance is supplied to prevent multiple identical connections.)
+(Multiple Snowmix instances can be created if you are running multiple Snowmixes on different ports/hosts. If the same host/port is requested multiple times, the same `Snowmix` instance is supplied to prevent multiple identical connections.)
 
-Snowmix is controlled by (a range of commands)[http://snowmix.sourceforge.net/Documentation/reserved.html].
+Snowmix is controlled by [a range of commands](http://snowmix.sourceforge.net/Documentation/reserved.html).
 Use this library to send any Snowmix command with `sendCommand()`:
 
 ```js
@@ -66,11 +67,11 @@ Helper functions around video, audio and text overlays are available, and summar
 
 ## Video control
 
-In an OO style, Video feeds, and virtual feeds, are given instances of the 'Feed' and 'Vfeed' class (respectively).
+In an OO style, video feeds, and virtual vide feeds, are given instances of the 'Feed' and 'Vfeed' class (respectively).
 These are automatically populated when this library first connects to Snowmix.
 
-Access feeds by ID using `snowmix.feeds.byId(<ID NUMBER>)`
-And likewise, vfeeds with `snowmix.vfeeds.byId(<ID NUMBER>)`
+Access feeds by ID using `snowmix.feeds.byId(<FEED ID>)`
+And likewise, vfeeds with `snowmix.vfeeds.byId(<VFEED ID>)`
 
 All feeds can be accessed with `snowmix.feeds.all()`, and the same for `vfeed`. For example, to see how many vfeeds there are:
 
@@ -85,7 +86,7 @@ To switch to a vfeed (and only that vfeed), use `switch()`:
 
 ```js
 snowmix.vfeeds.byId(1).switch()
-.then(() => { console.log('Happy watching!') })
+.then(() => { console.log('Enjoy watching vfeed 1!') })
 ```
 
 This is plain video switching - full-screen switching, nothing more.
@@ -94,7 +95,7 @@ It is hoped to offer more powerful video switching, such as picture-in-picture, 
 
 ## Audio control
 
-As with video, switch to an audio source using `switch()` on the relevant `AudioFeed` instance:
+As with video, switch to an audio source using `switch()` on the relevant `Audiofeed` instance:
 
 ```js
 snowmix.audioFeeds.byId(1).switch()
@@ -109,7 +110,7 @@ To overlay text on your video:
 
 ```js
 var myText1 = snowmix.texts.add({ string: 'Snowmix is great!' })
-myText1.applyAndShow()
+myText1.show()
 .then(() => { ... })
 ```
 
@@ -117,15 +118,15 @@ By default, text will be shown in the bottom-left, black on a translucent grey b
 
 All fields can be overridden, such as `x` and `y` (to set the location) and `location` (which can be one of `ne`, `nw`, `se`, ```sw```).
 
-## Full Documentation
+## Full Documentation...
 
-Is available (here)[./doc/doc.md]
+...is available [here](./doc/doc.md).
 
 ## Further examples...
 
 ...can be found in the (examples/)[./examples/] directory.
 
-## Debugging
+## Debugging (including seeing the commands & responses with Snowmix)
 
 To see the commands sent and responses received from Snowmix, and gstreamer, set the ```LOG_LEVEL``` environment variable to ```debug```:
 

@@ -18,10 +18,12 @@ const defaultValues = {
 let singletons = {}
 
 /**
- * Constructor, that ensures the same instance is used for each host/port
+ * Snowmix Constructor.
+ * Ensures the same instance is used for each host/port
  *
  * Optional arguments as object: port, host
  * @example let snowmix = Snowmix.new()
+ * @example let snowmix = Snowmix.new({ port: 1234, host: 'example.com' })
  */
 exports.new = (host, port) => {
     if (!host || host === 'localhost') host = '127.0.0.1'
@@ -32,128 +34,234 @@ exports.new = (host, port) => {
 }
 
 /**
- * Constructor
- * @private (for external use, use .new above)
+ * The main Snowmix class. Use snowmix.new() to construct.
  */
-function Snowmix() {
-    _.defaults(this, defaultValues)
-    this.general    = new SnowmixGeneral(this)
-    this.command    = new SnowmixCommands(this)
-    this.feeds      = new SnowmixFeeds(this)
-    this.vfeeds     = new SnowmixVfeeds(this)
-    this.audiofeeds = new SnowmixAudiofeeds(this)
-    this.texts      = new SnowmixTexts(this)
-    this.commandsQueue = []
-}
-
-/**
- * Connect to Snowmix
- *
- * @example snowmix.connect().then(() => { snowmix.sendCommand(...) }
- */
-Snowmix.prototype.connect = function() {
-
-    if (this.closing) {
-        throw new Error('Attempting to connect whilst closing. Are you sure you have got your promises right?')
+class Snowmix {
+    /**
+     * Constructor
+     * @private (for external use, use .new above)
+     */
+    constructor() {
+        _.defaults(this, defaultValues)
+        this.general    = new SnowmixGeneral(this)
+        this.command    = new SnowmixCommands(this)
+        this.feeds      = new SnowmixFeeds(this)
+        this.vfeeds     = new SnowmixVfeeds(this)
+        this.audiofeeds = new SnowmixAudiofeeds(this)
+        this.texts      = new SnowmixTexts(this)
+        this.commandsQueue = []
     }
 
-    // Don't allow multiple connections at once:
-    if (this.connecting) {
-        if (this.connectingLoopCount++ > 1000) throw new Error('Stuck in connecting state!')
-        return Promise.resolve().delay(20).then(() => {
-            return this.connect()
-        })
-    }
+    /**
+     * Connect to Snowmix
+     *
+     * @example snowmix.connect().then(() => { snowmix.sendCommand(...) }
+     */
+    connect() {
 
-    this.connecting = true
-    this.connectingLoopCount = 0
+        if (this.closing) {
+            throw new Error('Attempting to connect whilst closing. Are you sure you have got your promises right?')
+        }
 
-    if (this.client) {
-        if (!this.client.destroyed) return Promise.resolve() // already connected
-        delete this.client
-    }
+        // Don't allow multiple connections at once:
+        if (this.connecting) {
+            if (this.connectingLoopCount++ > 1000) throw new Error('Stuck in connecting state!')
+            return Promise.resolve().delay(20).then(() => {
+                return this.connect()
+            })
+        }
 
-    return new Promise((resolve, reject) => {
+        this.connecting = true
+        this.connectingLoopCount = 0
 
-        this.client = new net.Socket()
-        this.client.on('close', () => {
-            if (this.closing) {
-                logger.debug('Connection to Snowmix closed')
-                this.general.clearCache()
-                this.closing = false
-                if (this.onCloseCallbacks) this.onCloseCallbacks.forEach(f => { f() })
-            }
-            else {
-                logger.warn('Connection to Snowmix closed')
-            }
-        });
+        if (this.client) {
+            if (!this.client.destroyed) return Promise.resolve() // already connected
+            delete this.client
+        }
 
-        this.client.connect(this.port, this.host, () => {
-            const handleResponse = response => {
-                this.connecting = false
-                response = response.toString()
-                if (!response.match(/^Snowmix version [\d.]+\s*$/)) {
-                    throw new Error(`Misunderstood connection response: '${response}'`)
+        return new Promise((resolve, reject) => {
+
+            this.client = new net.Socket()
+            this.client.on('close', () => {
+                if (this.closing) {
+                    logger.debug('Connection to Snowmix closed')
+                    this.general.clearCache()
+                    this.closing = false
+                    if (this.onCloseCallbacks) this.onCloseCallbacks.forEach(f => { f() })
                 }
+                else {
+                    logger.warn('Connection to Snowmix closed')
+                }
+            });
 
-                logger.debug('Connected to Snowmix on port', this.port)
+            this.client.connect(this.port, this.host, () => {
+                const handleResponse = response => {
+                    this.connecting = false
+                    response = response.toString()
+                    if (!response.match(/^Snowmix version [\d.]+\s*$/)) {
+                        throw new Error(`Misunderstood connection response: '${response}'`)
+                    }
 
-                // Change to standard data handler now that we're connected
-                this.client.removeListener('data', handleResponse)
-                this.client.on('data', data => {
-                    return this.onData(data)
-                })
+                    logger.debug('Connected to Snowmix on port', this.port)
 
-                resolve()
-            }
-            this.client.on('data', handleResponse)
+                    // Change to standard data handler now that we're connected
+                    this.client.removeListener('data', handleResponse)
+                    this.client.on('data', data => {
+                        return this.onData(data)
+                    })
+
+                    resolve()
+                }
+                this.client.on('data', handleResponse)
+            })
         })
-    })
-    .then(() => {
-        return this.general.ensureVerboseOn()
-    })
-    .then(() => {
-        return this.populate()
-    })
+        .then(() => {
+            return this.general.ensureVerboseOn()
+        })
+        .then(() => {
+            return this.populate()
+        })
+    }
+
+    /**
+     * Handle Snowmix response.
+     * @private
+     */
+    onData(data) {
+        data = data.toString()
+
+        if (this.commandsQueue.length === 0) {
+            logger.warn('Unrecognised message from Snowmix:', data)
+            return
+        }
+        let commandInFlight = this.commandsQueue[0]
+
+        if (this.previousData) data = this.previousData + data
+
+        let isIncomplete = looksLikeMoreToCome(data, commandInFlight.args)
+
+        let logMsg = (isIncomplete ? 'INCOMPLETE ' : '') +
+            'response from Snowmix ---\n' + data + '\n---END of response from Snowmix'
+        commandInFlight.args.logAtSillyLevel ? logger.silly(logMsg) : logger.debug(logMsg)
+
+        if (isIncomplete) {
+            this.previousData = data
+            return
+        }
+
+        this.commandsQueue.shift() // remove the command, it's done
+        delete this.previousData
+        commandInFlight.responseHandler(data)
+        this.sendNextMessageInQueue() // we can now ask Snowmix for the next thing
+    }
+
+    /**
+     * Close the connection to Snowmix. (Does not stop Snowmix.)
+     *
+     * @example snowmix.close().then(() => { console.log('All done') })
+     */
+    close() {
+        if (!this.client || this.client.destroyed) return Promise.resolve()
+        this.closing = true
+        return new Promise(resolve => {
+            if (!this.onCloseCallbacks) this.onCloseCallbacks = []
+            this.onCloseCallbacks.push(resolve)
+            this.client.end()
+        })
+    }
+
+    /**
+     * Populates the information known about feeds, virutal feeds and texts from Snowmix.
+     */
+    populate() {
+        return this.feeds.populate()
+        .then(() => { return this.vfeeds.populate() })
+        .then(() => { return this.audiofeeds.populate() })
+        .then(() => { return this.texts.populate() })
+        .then(() => {
+            logger.info(`There are ${this.audiofeeds.all().length} audio feeds,`,
+                        `${this.feeds.all().length} video feeds,`,
+                        `${this.vfeeds.all().length} video vfeeds, and`,
+                        `${this.texts.all().length} texts`)
+        })
+    }
+
+    /**
+     * Send a command, or array of commands, to Snowmix.
+     * Optional arguments:
+     *   set 'expectResonse' to false if no response is expected.
+     *    (note very few don't set a response when in verbose mode, which this library enables automatically)
+     *   set 'expectMultiline' to true if the command returns multiple lines
+     *    (if not set, some lines may be missed)
+     *
+     * @param {string_or_array} commands
+     * @param {object} arguments
+     */
+    sendCommand(cmd, args) {
+        if (this.client && this.client.writable && !this.connecting) return this._command(cmd, args)
+        return this.connect().then(() => { return this._command(cmd, args) })
+    }
+
+    _command(cmd, args) {
+        if (!this.r) this.r = Math.random()
+        return new Promise((resolve, reject) => {
+            // commandsQueue ensures we only run one command at once
+            this.commandsQueue.push({ cmd: cmd, responseHandler: resolve, args: args||{} })
+            this.sendNextMessageInQueue()
+        })
+        .then(response => {
+            if (response && args && args.tidy) return splitLinesAndTidy(response)
+            return response
+        })
+    }
+
+    /**
+     * Sends the next command in the queue to Snowmix, if the current message at the top has completed.
+     * (And most of the time, completed means that a response has been received from Snowmix.)
+     * @private
+     */
+    sendNextMessageInQueue() {
+        if (!this.commandsQueue.length) return
+        let command = this.commandsQueue[0]
+
+        // This next line ensures that we don't send a second command until a
+        // response from the first has been reveived:
+        if (command.sent) return
+
+        if (Array.isArray(command.cmd)) {
+            logger.debug(`Sending ${command.cmd.length} commands:\n` + command.cmd.map(c => { return `  [${c}]\n`}).join(''))
+            command.cmd = command.cmd.map(c => c + '\n').join('')
+        }
+        else {
+            logger.debug(`Sending command: [${command.cmd}]`)
+            command.cmd = `${command.cmd}\n`
+        }
+
+        command.sent = true
+        this.client.write(command.cmd)
+
+        if (command.args.expectResponse === false) {
+            this.commandsQueue.shift()
+            command.responseHandler()
+            this.sendNextMessageInQueue() // time to do next message
+        }
+    }
+}
+
+function splitLinesAndTidy(data) {
+    if (data.length === 0) return []
+    data = data
+    .split('\n')
+    .map(l => { return l.replace(/^(MSG|STAT):\s*/, '') })
+
+    while (data[data.length-1] === '')  data.pop()
+    return data
 }
 
 /**
- * @private
- * Handle Snowmix response.
- */
-let previousData
-Snowmix.prototype.onData = function(data) {
-    data = data.toString()
-
-    if (this.commandsQueue.length === 0) {
-        logger.warn('Unrecognised message from Snowmix:', data)
-        return
-    }
-    let commandInFlight = this.commandsQueue[0]
-
-    if (previousData) data = previousData + data
-
-    let isIncomplete = looksLikeMoreToCome(data, commandInFlight.args)
-
-    let logMsg = (isIncomplete ? 'INCOMPLETE ' : '') +
-        'response from Snowmix ---\n' + data + '\n---END of response from Snowmix'
-    commandInFlight.args.logAtSillyLevel ? logger.silly(logMsg) : logger.debug(logMsg)
-
-    if (isIncomplete) {
-        previousData = data
-        return
-    }
-
-    this.commandsQueue.shift() // remove the command, it's done
-    previousData = undefined
-    commandInFlight.responseHandler(data)
-    this.sendNextMessageInQueue() // we can now ask Snowmix for the next thing
-}
-
-/**
- * @private
  * Analyses response from Snowmix to determine if it is complete or not.
  * Based on rules at https://sourceforge.net/p/snowmix/discussion/Snowmix_Support_Forum/thread/b607c533/
+ * @private
  */
 function looksLikeMoreToCome(data, args) {
     if (!args.expectMultiline) return false
@@ -165,107 +273,4 @@ function looksLikeMoreToCome(data, args) {
     let lineContents = matches[2]
     if (lineContents === '') return false
     return true
-}
-
-/**
- * Close the connection to Snowmix. (Does not stop Snowmix.)
- *
- * @example snowmix.close().then(() => { console.log('All done') })
- */
-Snowmix.prototype.close = function() {
-    if (!this.client || this.client.destroyed) return Promise.resolve()
-    this.closing = true
-    return new Promise(resolve => {
-        if (!this.onCloseCallbacks) this.onCloseCallbacks = []
-        this.onCloseCallbacks.push(resolve)
-        this.client.end()
-    })
-}
-
-/**
- * Populates the information known about feeds, virutal feeds and texts from Snowmix.
- */
-Snowmix.prototype.populate = function() {
-    return this.feeds.populate()
-    .then(() => { return this.vfeeds.populate() })
-    .then(() => { return this.audiofeeds.populate() })
-    .then(() => { return this.texts.populate() })
-    .then(() => {
-        logger.info(`There are ${this.audiofeeds.all().length} audio feeds,`,
-                    `${this.feeds.all().length} video feeds,`,
-                    `${this.vfeeds.all().length} video vfeeds, and`,
-                    `${this.texts.all().length} texts`)
-    })
-}
-
-/**
- * Send a command, or array of commands, to Snowmix.
- * Optional arguments:
- *   set 'expectResonse' to false if no response is expected.
- *    (note very few don't set a response when in verbose mode, which this library enables automatically)
- *   set 'expectMultiline' to true if the command returns multiple lines
- *    (if not set, some lines may be missed)
- *
- * @param {string_or_array} commands
- * @param {object} arguments
- */
-Snowmix.prototype.sendCommand = function(cmd, args) {
-    if (this.client && this.client.writable && !this.connecting) return this._command(cmd, args)
-    return this.connect().then(() => { return this._command(cmd, args) })
-}
-
-Snowmix.prototype._command = function(cmd, args) {
-    if (!this.r) this.r = Math.random()
-    return new Promise((resolve, reject) => {
-        // commandsQueue ensures we only run one command at once
-        this.commandsQueue.push({ cmd: cmd, responseHandler: resolve, args: args||{} })
-        this.sendNextMessageInQueue()
-    })
-    .then(response => {
-        if (response && args && args.tidy) return splitLinesAndTidy(response)
-        return response
-    })
-}
-
-/**
- * Sends the next command in the queue to Snowmix, if the current message at the top has completed.
- * (And most of the time, completed means that a response has been received from Snowmix.)
- * @private
- */
-Snowmix.prototype.sendNextMessageInQueue = function() {
-    if (!this.commandsQueue.length) return
-    let command = this.commandsQueue[0]
-
-    // This next line ensures that we don't send a second command until a
-    // response from the first has been reveived:
-    if (command.sent) return
-
-    if (Array.isArray(command.cmd)) {
-        logger.debug(`Sending ${command.cmd.length} commands:\n` + command.cmd.map(c => { return `  [${c}]\n`}).join(''))
-        command.cmd = command.cmd.map(c => c + '\n').join('')
-    }
-    else {
-        logger.debug(`Sending command: [${command.cmd}]`)
-        command.cmd = `${command.cmd}\n`
-    }
-
-    command.sent = true
-    this.client.write(command.cmd)
-
-    if (command.args.expectResponse === false) {
-        this.commandsQueue.shift()
-        command.responseHandler()
-        this.sendNextMessageInQueue() // time to do next message
-    }
-
-}
-
-function splitLinesAndTidy(data) {
-    if (data.length === 0) return []
-    data = data
-    .split('\n')
-    .map(l => { return l.replace(/^(MSG|STAT):\s*/, '') })
-
-    while (data[data.length-1] === '')  data.pop()
-    return data
 }
