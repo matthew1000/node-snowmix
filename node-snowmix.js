@@ -6,6 +6,7 @@ const net = require('net'),
       SnowmixVfeeds = require('./lib/Vfeeds'),
       SnowmixAudiofeeds = require('./lib/Audiofeeds'),
       SnowmixGeneral = require('./lib/General'),
+      SnowmixSystemInfo = require('./lib/SystemInfo'),
       SnowmixCommands = require('./lib/Commands'),
       _ = require('lodash'),
       logger = require('./lib/logger')
@@ -40,6 +41,7 @@ class Snowmix {
     constructor() {
         _.defaults(this, defaultValues)
         this.general    = new SnowmixGeneral(this)
+        this.systemInfo = new SnowmixSystemInfo(this)
         this.commands   = new SnowmixCommands(this)
         this.feeds      = new SnowmixFeeds(this)
         this.vfeeds     = new SnowmixVfeeds(this)
@@ -81,7 +83,6 @@ class Snowmix {
             this.client.on('close', () => {
                 if (this.closing) {
                     logger.debug('Connection to Snowmix closed')
-                    this.general.clearCache()
                     this.closing = false
                     if (this.onCloseCallbacks) this.onCloseCallbacks.forEach(f => { f() })
                 }
@@ -112,6 +113,11 @@ class Snowmix {
             })
         })
         .then(() => {
+            // This must be done first, before ensureVerboseOn
+            return this.systemInfo.populate()
+        })
+        .then(() => {
+            // This must be done second, before we populate other objects
             return this.general.ensureVerboseOn()
         })
         .then(() => {
@@ -185,7 +191,7 @@ class Snowmix {
     /**
      * Send a command, or array of commands, to Snowmix.
      * Optional arguments:
-     *   set 'expectResonse' to false if no response is expected.
+     *   set 'expectResponse' to false if no response is expected.
      *    (note very few don't set a response when in verbose mode, which this library enables automatically)
      *   set 'expectMultiline' to true if the command returns multiple lines
      *    (if not set, some lines may be missed)

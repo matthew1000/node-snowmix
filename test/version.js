@@ -4,8 +4,9 @@ let Snowmix = require('../node-snowmix'),
     expect = require('chai').expect
 
 it('Should get the version', function() {
-    return snowmix.general.systemInfoSingle('snowmixVersion')
-    .then(v => {
+    return snowmix.connect()
+    .then(() => {
+        let v = snowmix.systemInfo.snowmixVersion
         console.log('This is Snowmix version', v)
         expect(v).to.equal('0.5.1');
     })

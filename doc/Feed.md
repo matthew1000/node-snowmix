@@ -22,7 +22,7 @@ A single video feed (not to be confused with a vfeed - virtual video feed).
 
 * [Feed](#Feed)
     * [.getVirtualFeedsUsingThisFeed()](#Feed+getVirtualFeedsUsingThisFeed) ⇒ <code>Array</code>
-    * [.getOrMakePrimaryVirtualFeed()](#Feed+getOrMakePrimaryVirtualFeed)
+    * [.getOrMakePrimaryVirtualFeed()](#Feed+getOrMakePrimaryVirtualFeed) ⇒ <code>Promise</code>
     * [.switch()](#Feed+switch) ⇒ <code>Promise</code>
 
 <a name="Feed+getVirtualFeedsUsingThisFeed"></a>
@@ -32,7 +32,7 @@ A single video feed (not to be confused with a vfeed - virtual video feed).
 **Returns**: <code>Array</code> - of Vfeed objects  
 <a name="Feed+getOrMakePrimaryVirtualFeed"></a>
 
-### feed.getOrMakePrimaryVirtualFeed()
+### feed.getOrMakePrimaryVirtualFeed() ⇒ <code>Promise</code>
 Finds, and if it can't be found makes, a 'primary' virtual feed for this video feed,
 i.e. one that is full-screen.
 

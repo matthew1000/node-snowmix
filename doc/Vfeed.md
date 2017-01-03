@@ -25,12 +25,19 @@ A virtual video feed
 
 * [Vfeed](#Vfeed)
     * [.getFeed()](#Vfeed+getFeed) ⇒ <code>Feed</code>
+    * [.remove()](#Vfeed+remove) ⇒ <code>Promise</code>
     * [.switch()](#Vfeed+switch) ⇒ <code>Promise</code>
 
 <a name="Vfeed+getFeed"></a>
 
 ### vfeed.getFeed() ⇒ <code>Feed</code>
 Returns the feed object that this virtual feed is for
+
+**Kind**: instance method of <code>[Vfeed](#Vfeed)</code>  
+<a name="Vfeed+remove"></a>
+
+### vfeed.remove() ⇒ <code>Promise</code>
+Remove this vfeed from Snowmix
 
 **Kind**: instance method of <code>[Vfeed](#Vfeed)</code>  
 <a name="Vfeed+switch"></a>

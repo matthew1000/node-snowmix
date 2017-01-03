@@ -12,7 +12,8 @@ snowmix.vfeeds - controls all vfeeds (virtual video feeds)
     * [.byId(ID)](#Vfeeds+byId) ⇒ <code>Vfeed</code>
     * [.getShowingIds()](#Vfeeds+getShowingIds) ⇒ <code>array</code>
     * [.getNextAvailableId()](#Vfeeds+getNextAvailableId) ⇒ <code>integer</code>
-    * [.addOrUpdate(arguments)](#Vfeeds+addOrUpdate) ⇒ <code>Vfeed</code>
+    * [.removeAll()](#Vfeeds+removeAll) ⇒ <code>Promise</code>
+    * [.add(containing)](#Vfeeds+add) ⇒ <code>Vfeed</code>
 
 <a name="Vfeeds+all"></a>
 
@@ -51,15 +52,22 @@ Returns next available ID.
 e.g. if existing IDs used are [1,2,3,5] return 4, then 6.
 
 **Kind**: instance method of <code>[Vfeeds](#Vfeeds)</code>  
-<a name="Vfeeds+addOrUpdate"></a>
+<a name="Vfeeds+removeAll"></a>
 
-### vfeeds.addOrUpdate(arguments) ⇒ <code>Vfeed</code>
-Add a new (Video) virtual feed.
-Of, if a video feed of the specified ID is provided, updates it.
+### vfeeds.removeAll() ⇒ <code>Promise</code>
+Remove all vfeeds
 
 **Kind**: instance method of <code>[Vfeeds](#Vfeeds)</code>  
+<a name="Vfeeds+add"></a>
+
+### vfeeds.add(containing) ⇒ <code>Vfeed</code>
+Add a new vfeed
+Or, if a vfeed of the specified ID is provided, updates it.
+
+**Kind**: instance method of <code>[Vfeeds](#Vfeeds)</code>  
+**Returns**: <code>Vfeed</code> - object  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| arguments | <code>object</code> | 'name' (required) and 'id' (optional) If omitted, id will be next highest value. |
+| containing | <code>object</code> | source & sourceId (essential), name & id (optional) If omitted, id will be next highest value. |
 

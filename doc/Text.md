@@ -17,9 +17,9 @@ A Text object (that can be placed on a video).
 
 * [Text](#Text)
     * [.applyAndShow()](#Text+applyAndShow)
-    * [.apply()](#Text+apply)
-    * [.show()](#Text+show)
-    * [.hide()](#Text+hide)
+    * [.apply()](#Text+apply) ⇒ <code>Promise</code>
+    * [.show()](#Text+show) ⇒ <code>Promise</code>
+    * [.hide()](#Text+hide) ⇒ <code>Promise</code>
     * [.commandsExceptStringCommand()](#Text+commandsExceptStringCommand)
 
 <a name="Text+applyAndShow"></a>
@@ -30,20 +30,20 @@ Inform Snowmix of the current settings, and then ensure it's visible.
 **Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="Text+apply"></a>
 
-### text.apply()
+### text.apply() ⇒ <code>Promise</code>
 Inform Snowmix of the current settings.
-Does not show or hide it (for that, use applyAndShow())
+Does not show or hide it (for that, use show() or hide())
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="Text+show"></a>
 
-### text.show()
+### text.show() ⇒ <code>Promise</code>
 Shows the text. If already showing, does nothing.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="Text+hide"></a>
 
-### text.hide()
+### text.hide() ⇒ <code>Promise</code>
 Hides the text. If already hiding, does nothing.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  

@@ -40,13 +40,11 @@ Get a feed by ID
 <a name="Feeds+add"></a>
 
 ### feeds.add(containing) ⇒ <code>Feed</code>
-Add a new (Video) feed, for when you have a new video source
+Add a new (video) feed, for when you have a new video source
 Or, if a video feed of the specified ID is provided, updates it.
 
 **Kind**: instance method of <code>[Feeds](#Feeds)</code>  
-**Returns**: <code>Feed</code> - object
-
-TODO - not yet working because apply() has not been built  
+**Returns**: <code>Feed</code> - object  
 
 | Param | Type | Description |
 | --- | --- | --- |

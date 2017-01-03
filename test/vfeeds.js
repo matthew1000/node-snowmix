@@ -10,12 +10,16 @@ it('Connect to Snowmix which should load all initial vfeeds', function() {
     return snowmix.connect()
 })
 
+it('Remove any vfeeds lying around', function() {
+    return snowmix.vfeeds.removeAll()
+})
+
 it('Initially be no vfeeds', function() {
     expect(snowmix.vfeeds.all()).to.have.length(0)
 })
 
 it('create vfeed #1', function() {
-    return snowmix.vfeeds.addOrUpdate({name: 'name1'})
+    return snowmix.vfeeds.add({name: 'name1', sourceId: 1, source: 'feed'})
 })
 
 it('Should be one vfeed with all()', function() {
@@ -28,7 +32,7 @@ it('Should be one vfeed with all()', function() {
 })
 
 it('create vfeed #2', function() {
-    return snowmix.vfeeds.addOrUpdate({name: 'name2'})
+    return snowmix.vfeeds.add({name: 'name2', sourceId: 1, source: 'feed'})
 })
 
 it('Should be 2 feeds with all()', function() {
@@ -41,11 +45,21 @@ it('Should be able to fetch the feeds by ID', function() {
 })
 
 it('change name of vfeed #2', function() {
-    return snowmix.vfeeds.addOrUpdate({name: 'new-name-for-2', id: 2})
+    return snowmix.vfeeds.add({name: 'new-name-for-2', id: 2})
 })
 
 it('check name has stuck and we haven\'t created a new feed', function() {
     expect(snowmix.vfeeds.all()).to.have.length(2)
+    expect(snowmix.vfeeds.byId(2).name).to.equal('new-name-for-2')
+})
+
+it('should repopulate from snowmix', function() {
+    return snowmix.populate()
+})
+
+it('Should have the same details after repopulating', function() {
+    expect(snowmix.vfeeds.all()).to.have.length(2)
+    expect(snowmix.vfeeds.byId(1).name).to.equal('name1')
     expect(snowmix.vfeeds.byId(2).name).to.equal('new-name-for-2')
 })
 

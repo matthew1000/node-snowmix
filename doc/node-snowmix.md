@@ -24,16 +24,10 @@ The main Snowmix class. Use snowmix.new() to construct.
 **Kind**: global class  
 
 * [Snowmix](#Snowmix)
-    * [new Snowmix()](#new_Snowmix_new)
     * [.connect()](#Snowmix+connect)
     * [.close()](#Snowmix+close)
     * [.populate()](#Snowmix+populate)
     * [.sendCommand(commands, arguments)](#Snowmix+sendCommand)
-
-<a name="new_Snowmix_new"></a>
-
-### new Snowmix()
-Constructor
 
 <a name="Snowmix+connect"></a>
 
@@ -66,7 +60,7 @@ Populates the information known about feeds, virtual feeds and texts from Snowmi
 ### snowmix.sendCommand(commands, arguments)
 Send a command, or array of commands, to Snowmix.
 Optional arguments:
-  set 'expectResonse' to false if no response is expected.
+  set 'expectResponse' to false if no response is expected.
    (note very few don't set a response when in verbose mode, which this library enables automatically)
   set 'expectMultiline' to true if the command returns multiple lines
    (if not set, some lines may be missed)

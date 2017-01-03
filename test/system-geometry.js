@@ -4,8 +4,9 @@ let Snowmix = require('../node-snowmix'),
     expect = require('chai').expect
 
 it('Should get the x,y system geometry', function() {
-    return snowmix.general.systemGeometry()
-    .then(geometry => {
+    return snowmix.connect()
+    .then(() => {
+        let geometry = snowmix.systemInfo.systemGeometry
         console.log(`The system geometry width is ${geometry.width} and height is ${geometry.height}`)
         expect(geometry.width).to.equal(1024)
         expect(geometry.height).to.equal(576)
