@@ -5,6 +5,7 @@ Core:
 * [Snowmix](./node-snowmix.md) - the primary Snowmix class
 * [General](./General.md) - for general Snowmix commands
 * [Commands](./Commands.md) - for handling Snowmix commands
+* [SystemInfo](./SystemInfo.md) - Snowmix system info, including version
 
 Audio:
 

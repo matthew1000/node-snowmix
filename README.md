@@ -59,9 +59,11 @@ snowmix.connect()
 However, the real benefit comes when you use the helper functions, which make it easier to provide parameters and understand Snowmix's response. Fore example, geometry can be fetched with:
 
 ```js
-snowmix.general.systemGeometry()
-.then(geometry => {
-    console.log(`The system width is ${geometry.width} and height is ${geometry.height}`)
+snowmix.connect()
+.then(() => {
+    let geometry = snowmix.systemInfo.systemGeometry
+    console.log(`The system geometry width is ${geometry.width} and height is ${geometry.height}`)
+    return snowmix.close()
 })
 ```
 
