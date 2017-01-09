@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict'
 /**
- * Creates a feed
+ * Creates an audioSink
  */
 let Snowmix = require('../node-snowmix'),
     snowmix = Snowmix.new(),
@@ -10,9 +10,9 @@ let Snowmix = require('../node-snowmix'),
 
 snowmix.connect()
 .then(() => {
-    return snowmix.feeds.add({name : name, id: id})
-}).then(feed => {
-    console.log(`Created feed with id ${feed.id} and name '${feed.name}'`)
+    return snowmix.audioSinks.add({name: name, id: id})
+}).then(audioSink => {
+    console.log(`Created audioSink with id ${audioSink.id} and name '${audioSink.name}'`)
 }).finally(() => {
     return snowmix.close()
 })

@@ -18,6 +18,10 @@ it('Initially be no vfeeds', function() {
     expect(snowmix.vfeeds.all()).to.have.length(0)
 })
 
+it('create a feed so that we can then make a vfeed', function() {
+    return snowmix.feeds.add({name: 'feed1', sourceId: 1})
+})
+
 it('create vfeed #1', function() {
     return snowmix.vfeeds.add({name: 'name1', sourceId: 1, source: 'feed'})
 })
@@ -39,7 +43,7 @@ it('Should be 2 feeds with all()', function() {
     expect(snowmix.vfeeds.all()).to.have.length(2)
 })
 
-it('Should be able to fetch the feeds by ID', function() {
+it('Should be able to fetch the vfeeds by ID', function() {
     expect(snowmix.vfeeds.byId(1).name).to.equal('name1')
     expect(snowmix.vfeeds.byId(2).name).to.equal('name2')
 })

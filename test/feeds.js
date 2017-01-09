@@ -37,7 +37,7 @@ it('Should be 3 feeds with all()', function() {
     expect(snowmix.feeds.all()).to.have.length(3)
 })
 
-it('Should be able to fetch the feeds by ID', function() {
+it('Should be able to fetch the (video) feeds by ID', function() {
     expect(snowmix.feeds.byId(1).name).to.equal('name1')
     expect(snowmix.feeds.byId(2).name).to.equal('name2')
 })

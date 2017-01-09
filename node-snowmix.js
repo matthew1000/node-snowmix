@@ -4,7 +4,9 @@ const net = require('net'),
       SnowmixTexts = require('./lib/Texts'),
       SnowmixFeeds = require('./lib/Feeds'),
       SnowmixVfeeds = require('./lib/Vfeeds'),
-      SnowmixAudiofeeds = require('./lib/Audiofeeds'),
+      SnowmixAudioFeeds = require('./lib/AudioFeeds'),
+      SnowmixAudioMixers = require('./lib/AudioMixers'),
+      SnowmixAudioSinks = require('./lib/AudioSinks'),
       SnowmixGeneral = require('./lib/General'),
       SnowmixSystemInfo = require('./lib/SystemInfo'),
       SnowmixCommands = require('./lib/Commands'),
@@ -45,7 +47,9 @@ class Snowmix {
         this.commands   = new SnowmixCommands(this)
         this.feeds      = new SnowmixFeeds(this)
         this.vfeeds     = new SnowmixVfeeds(this)
-        this.audiofeeds = new SnowmixAudiofeeds(this)
+        this.audioFeeds = new SnowmixAudioFeeds(this)
+        this.audioMixers= new SnowmixAudioMixers(this)
+        this.audioSinks = new SnowmixAudioSinks(this)
         this.texts      = new SnowmixTexts(this)
         this.commandsQueue = []
     }
@@ -178,10 +182,13 @@ class Snowmix {
     populate() {
         return this.feeds.populate()
         .then(() => { return this.vfeeds.populate() })
-        .then(() => { return this.audiofeeds.populate() })
+        .then(() => { return this.audioFeeds.populate() })
+        .then(() => { return this.audioFeeds.populate() })
+        .then(() => { return this.audioMixers.populate() })
+        .then(() => { return this.audioSinks.populate() })
         .then(() => { return this.texts.populate() })
         .then(() => {
-            logger.info(`There are ${this.audiofeeds.all().length} audio feeds,`,
+            logger.info(`There are ${this.audioFeeds.all().length} audio feeds,`,
                         `${this.feeds.all().length} video feeds,`,
                         `${this.vfeeds.all().length} video vfeeds, and`,
                         `${this.texts.all().length} texts`)

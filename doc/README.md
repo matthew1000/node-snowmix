@@ -9,8 +9,8 @@ Core:
 
 Audio:
 
-* [Audiofeed](./Audiofeed.md) - a single audio feed
-* [Audiofeeds](./Audiofeeds.md) - the collection of all audio feeds
+* [AudioFeed](./AudioFeed.md) - a single audio feed
+* [AudioFeeds](./AudioFeeds.md) - the collection of all audio feeds
 
 Video:
 

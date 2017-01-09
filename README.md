@@ -1,6 +1,6 @@
 # node-snowmix
 
-*node-snowmix* is a Node.JS library for the excellent [Snowmix](http://snowmix.sourceforge.net/) video mixer.
+*node-snowmix* is a Node.JS library for the excellent [Snowmix](http://snowmix.sourceforge.net/) video mixer. It allows you to create video and audio inputs (feeds), switch between them, and add graphics on top.
 
 ## Installation
 
@@ -99,7 +99,7 @@ It is hoped to offer more powerful video switching, such as picture-in-picture, 
 
 ## Audio control
 
-As with video, switch to an audio source using `switch()` on the relevant `Audiofeed` instance:
+As with video, switch to an audio source using `switch()` on the relevant `AudioFeed` instance:
 
 ```js
 snowmix.audioFeeds.byId(1).switch()
