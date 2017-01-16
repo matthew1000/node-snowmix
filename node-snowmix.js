@@ -188,9 +188,12 @@ class Snowmix {
         .then(() => { return this.audioSinks.populate() })
         .then(() => { return this.texts.populate() })
         .then(() => {
-            logger.info(`There are ${this.audioFeeds.all().length} audio feeds,`,
-                        `${this.feeds.all().length} video feeds,`,
-                        `${this.vfeeds.all().length} video vfeeds, and`,
+            logger.info(`There are `,
+                        `${this.feeds.all().length} video feeds, `,
+                        `${this.vfeeds.all().length} video vfeeds, `,
+                        `${this.audioFeeds.all().length} audio feeds, `,
+                        `${this.audioMixers.all().length} audio mixers, `,
+                        `${this.audioSinks.all().length} audio sinks, `,
                         `${this.texts.all().length} texts`)
         })
     }

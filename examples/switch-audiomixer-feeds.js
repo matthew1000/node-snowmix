@@ -8,9 +8,13 @@ let Snowmix = require('../node-snowmix'),
     audioMixerId = process.argv[2],
     audioFeedIds = process.argv.slice(3)
 
+if (!audioMixerId || !audioFeedIds.length) {
+    console.error('Please provide mixer id and then 1 or more audio feed ids')
+    process.exit(1)
+}
+
 snowmix.connect()
 .then(() => {
-    console.log(123, audioMixerId, audioFeedIds, typeof(audioFeedIds))
     let audioMixer = snowmix.audioMixers.byId(audioMixerId)
     if (!audioMixer) throw new Error('No such audioMixer')
     return audioMixer.switchToAudioFeeds(audioFeedIds)

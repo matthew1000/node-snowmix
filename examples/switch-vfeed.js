@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /**
  * Allows the user to swich to a vfeed
- * If no vfeed id is provided as argument, displays them all
  */
 'use strict'
 let Snowmix = require('../node-snowmix'),
