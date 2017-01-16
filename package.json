@@ -1,6 +1,6 @@
 {
   "name": "node-snowmix",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A Node.JS library to the Snowmix video mixer",
   "main": "node-snowmix.js",
   "scripts": {
