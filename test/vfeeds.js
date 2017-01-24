@@ -20,7 +20,7 @@ describe('Vfeeds', function() {
     })
 
     it('create a feed so that we can then make a vfeed', function() {
-        return snowmix.feeds.add({name: 'feed1', sourceId: 1})
+        return snowmix.feeds.add({name: 'feed1', id: 1})
     })
 
     it('create vfeed #1', function() {
