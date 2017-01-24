@@ -7,31 +7,31 @@
 <dt><a href="#AudioFeed">AudioFeed</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
 <dd><p>An single audio feed. Use AudioFeeds to create and delete.</p>
 </dd>
-<dt><a href="#AudioFeeds">AudioFeeds</a></dt>
+<dt><a href="#AudioFeeds">AudioFeeds</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
 <dd><p>Handles all audio feeds</p>
 </dd>
-<dt><a href="#AudioMixer">AudioMixer</a></dt>
+<dt><a href="#AudioMixer">AudioMixer</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
 <dd><p>An single audio mixer. Use <code>AudioMixers</code> to create and delete.
 An audio mixer allows audio feeds to be mixed together, and then sent to
 an AudioSink for output. You probably only have the need for one audio mixer.</p>
 </dd>
-<dt><a href="#AudioMixers">AudioMixers</a></dt>
+<dt><a href="#AudioMixers">AudioMixers</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
 <dd><p>Handles all audio mixers</p>
 </dd>
-<dt><a href="#AudioSink">AudioSink</a></dt>
+<dt><a href="#AudioSink">AudioSink</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
 <dd><p>An single audio sink</p>
 </dd>
-<dt><a href="#AudioSinks">AudioSinks</a></dt>
+<dt><a href="#AudioSinks">AudioSinks</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
 <dd><p>Handles all audio sinks</p>
 </dd>
 <dt><a href="#SnowmixCommands">SnowmixCommands</a></dt>
 <dd><p>snowmix.commands - handles the manipulation of Snowmix commands (aka functions)</p>
 </dd>
-<dt><a href="#Feed">Feed</a></dt>
+<dt><a href="#Feed">Feed</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
 <dd><p>A single video feed (not to be confused with a vfeed - virtual video feed).
 Feeds can be discovered and created with the Feeds class.</p>
 </dd>
-<dt><a href="#Feeds">Feeds</a></dt>
+<dt><a href="#Feeds">Feeds</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
 <dd><p>Handles video feeds
 (Not to be confused with Vfeeds, which are <em>virtual</em> video feeds.)</p>
 </dd>
@@ -39,9 +39,7 @@ Feeds can be discovered and created with the Feeds class.</p>
 <dd><p>Handles the General commands: <a href="https://sourceforge.net/p/snowmix/wiki/Reference%20General/">https://sourceforge.net/p/snowmix/wiki/Reference%20General/</a></p>
 </dd>
 <dt><a href="#SnowmixItem">SnowmixItem</a></dt>
-<dd><p>Abstract superclass for a Snowmix item.
-(Feed, Vfeed, Text, AudioMixer, and the rest.)</p>
-</dd>
+<dd></dd>
 <dt><a href="#SnowmixItemCollection">SnowmixItemCollection</a></dt>
 <dd></dd>
 <dt><a href="#SystemInfo">SystemInfo</a></dt>
@@ -49,17 +47,19 @@ Feeds can be discovered and created with the Feeds class.</p>
 includes <code>systemGeometry</code>, verbose, hostAllow, systemName
 For the full list, run <code>examples/system-info.js</code></p>
 </dd>
-<dt><a href="#Text">Text</a></dt>
+<dt><a href="#Text">Text</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
 <dd><p>A Text object (that can be placed on a video).</p>
 </dd>
-<dt><a href="#Texts">Texts</a></dt>
+<dt><a href="#Texts">Texts</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
 <dd><p>Handles all texts</p>
 </dd>
-<dt><a href="#Vfeed">Vfeed</a></dt>
+<dt><a href="#Vfeed">Vfeed</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
 <dd><p>A virtual video feed</p>
 </dd>
 <dt><a href="#Vfeeds">Vfeeds</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
-<dd></dd>
+<dd><p>snowmix.vfeeds - controls all vfeeds (virtual video feeds)
+(Not to be confused with Feeds, which are <em>non-virtual</em> video feeds.)</p>
+</dd>
 </dl>
 
 ## Functions
@@ -176,10 +176,19 @@ Assign values to this item
 
 <a name="AudioFeeds"></a>
 
-## AudioFeeds
+## AudioFeeds ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
 Handles all audio feeds
 
 **Kind**: global class  
+**Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
+
+* [AudioFeeds](#AudioFeeds) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
+    * [.add(containing)](#AudioFeeds+add)
+    * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
+    * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
+    * [.byId(id)](#SnowmixItemCollection+byId) ⇒
+    * [.removeAll()](#SnowmixItemCollection+removeAll)
+
 <a name="AudioFeeds+add"></a>
 
 ### audioFeeds.add(containing)
@@ -192,22 +201,56 @@ Of, if an audio feed of the specified ID is provided, updates it.
 | --- | --- | --- |
 | containing | <code>object</code> | 'name' (required) and 'id' (optional) If omitted, id will be next highest value. |
 
+<a name="SnowmixItemCollection+all"></a>
+
+### audioFeeds.all() ⇒ <code>array</code>
+Returns all
+
+**Kind**: instance method of <code>[AudioFeeds](#AudioFeeds)</code>  
+<a name="SnowmixItemCollection+allIds"></a>
+
+### audioFeeds.allIds() ⇒ <code>array</code>
+Returns all IDs
+
+**Kind**: instance method of <code>[AudioFeeds](#AudioFeeds)</code>  
+**Returns**: <code>array</code> - - IDs as integers  
+<a name="SnowmixItemCollection+byId"></a>
+
+### audioFeeds.byId(id) ⇒
+Get by ID
+
+**Kind**: instance method of <code>[AudioFeeds](#AudioFeeds)</code>  
+**Returns**: - object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>integer</code> | ID |
+
+<a name="SnowmixItemCollection+removeAll"></a>
+
+### audioFeeds.removeAll()
+Remove all
+
+**Kind**: instance method of <code>[AudioFeeds](#AudioFeeds)</code>  
+**Fulfill**: <code>undefined</code>  
 <a name="AudioMixer"></a>
 
-## AudioMixer
+## AudioMixer ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
 An single audio mixer. Use `AudioMixers` to create and delete.
 An audio mixer allows audio feeds to be mixed together, and then sent to
 an AudioSink for output. You probably only have the need for one audio mixer.
 
 **Kind**: global class  
+**Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
 
-* [AudioMixer](#AudioMixer)
+* [AudioMixer](#AudioMixer) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
     * [.remove()](#AudioMixer+remove) ⇒ <code>Promise</code>
     * [.start()](#AudioMixer+start) ⇒ <code>Promise</code>
     * [.addAudioFeed(audioFeed)](#AudioMixer+addAudioFeed) ⇒ <code>Promise</code>
     * [.unmuteAudioFeed(audioFeed)](#AudioMixer+unmuteAudioFeed) ⇒ <code>Promise</code>
     * [.muteAudioFeed(audioFeed)](#AudioMixer+muteAudioFeed) ⇒ <code>Promise</code>
     * [.switchToAudioFeeds(of)](#AudioMixer+switchToAudioFeeds) ⇒ <code>Promise</code>
+    * [.assign(new, track)](#SnowmixItem+assign)
 
 <a name="AudioMixer+remove"></a>
 
@@ -266,12 +309,33 @@ Ensures the audioFeed(s) provided are the only ones that aren't muted
 | --- | --- | --- |
 | of | <code>Array</code> | audioFeed IDs |
 
+<a name="SnowmixItem+assign"></a>
+
+### audioMixer.assign(new, track)
+Assign values to this item
+
+**Kind**: instance method of <code>[AudioMixer](#AudioMixer)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| new | <code>Object</code> | values |
+| track | <code>Boolean</code> | changes? Defaults to false, if true,sets changed=true if change found. |
+
 <a name="AudioMixers"></a>
 
-## AudioMixers
+## AudioMixers ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
 Handles all audio mixers
 
 **Kind**: global class  
+**Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
+
+* [AudioMixers](#AudioMixers) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
+    * [.add(containing)](#AudioMixers+add)
+    * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
+    * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
+    * [.byId(id)](#SnowmixItemCollection+byId) ⇒
+    * [.removeAll()](#SnowmixItemCollection+removeAll)
+
 <a name="AudioMixers+add"></a>
 
 ### audioMixers.add(containing)
@@ -284,16 +348,50 @@ Of, if an audio mixer of the specified ID is provided, updates it.
 | --- | --- | --- |
 | containing | <code>object</code> | 'name' (required) and 'id' (optional) If omitted, id will be next highest value. |
 
+<a name="SnowmixItemCollection+all"></a>
+
+### audioMixers.all() ⇒ <code>array</code>
+Returns all
+
+**Kind**: instance method of <code>[AudioMixers](#AudioMixers)</code>  
+<a name="SnowmixItemCollection+allIds"></a>
+
+### audioMixers.allIds() ⇒ <code>array</code>
+Returns all IDs
+
+**Kind**: instance method of <code>[AudioMixers](#AudioMixers)</code>  
+**Returns**: <code>array</code> - - IDs as integers  
+<a name="SnowmixItemCollection+byId"></a>
+
+### audioMixers.byId(id) ⇒
+Get by ID
+
+**Kind**: instance method of <code>[AudioMixers](#AudioMixers)</code>  
+**Returns**: - object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>integer</code> | ID |
+
+<a name="SnowmixItemCollection+removeAll"></a>
+
+### audioMixers.removeAll()
+Remove all
+
+**Kind**: instance method of <code>[AudioMixers](#AudioMixers)</code>  
+**Fulfill**: <code>undefined</code>  
 <a name="AudioSink"></a>
 
-## AudioSink
+## AudioSink ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
 An single audio sink
 
 **Kind**: global class  
+**Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
 
-* [AudioSink](#AudioSink)
+* [AudioSink](#AudioSink) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
     * [.remove()](#AudioSink+remove) ⇒ <code>Promise</code>
     * [.addAudioMixer(audioMixer)](#AudioSink+addAudioMixer) ⇒ <code>Promise</code>
+    * [.assign(new, track)](#SnowmixItem+assign)
 
 <a name="AudioSink+remove"></a>
 
@@ -312,12 +410,33 @@ Add an audioMixer to this sink
 | --- | --- | --- |
 | audioMixer | <code>Integer</code> | ID |
 
+<a name="SnowmixItem+assign"></a>
+
+### audioSink.assign(new, track)
+Assign values to this item
+
+**Kind**: instance method of <code>[AudioSink](#AudioSink)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| new | <code>Object</code> | values |
+| track | <code>Boolean</code> | changes? Defaults to false, if true,sets changed=true if change found. |
+
 <a name="AudioSinks"></a>
 
-## AudioSinks
+## AudioSinks ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
 Handles all audio sinks
 
 **Kind**: global class  
+**Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
+
+* [AudioSinks](#AudioSinks) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
+    * [.add(containing)](#AudioSinks+add)
+    * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
+    * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
+    * [.byId(id)](#SnowmixItemCollection+byId) ⇒
+    * [.removeAll()](#SnowmixItemCollection+removeAll)
+
 <a name="AudioSinks+add"></a>
 
 ### audioSinks.add(containing)
@@ -330,6 +449,38 @@ Of, if an audio sink of the specified ID is provided, updates it.
 | --- | --- | --- |
 | containing | <code>object</code> | 'name' (required) and 'id' (optional) If omitted, id will be next highest value. |
 
+<a name="SnowmixItemCollection+all"></a>
+
+### audioSinks.all() ⇒ <code>array</code>
+Returns all
+
+**Kind**: instance method of <code>[AudioSinks](#AudioSinks)</code>  
+<a name="SnowmixItemCollection+allIds"></a>
+
+### audioSinks.allIds() ⇒ <code>array</code>
+Returns all IDs
+
+**Kind**: instance method of <code>[AudioSinks](#AudioSinks)</code>  
+**Returns**: <code>array</code> - - IDs as integers  
+<a name="SnowmixItemCollection+byId"></a>
+
+### audioSinks.byId(id) ⇒
+Get by ID
+
+**Kind**: instance method of <code>[AudioSinks](#AudioSinks)</code>  
+**Returns**: - object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>integer</code> | ID |
+
+<a name="SnowmixItemCollection+removeAll"></a>
+
+### audioSinks.removeAll()
+Remove all
+
+**Kind**: instance method of <code>[AudioSinks](#AudioSinks)</code>  
+**Fulfill**: <code>undefined</code>  
 <a name="SnowmixCommands"></a>
 
 ## SnowmixCommands
@@ -413,11 +564,12 @@ Resets the Show command to containing nothing apart from the essential 'loop'
 **Kind**: instance method of <code>[SnowmixCommands](#SnowmixCommands)</code>  
 <a name="Feed"></a>
 
-## Feed
+## Feed ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
 A single video feed (not to be confused with a vfeed - virtual video feed).
 Feeds can be discovered and created with the Feeds class.
 
 **Kind**: global class  
+**Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
 **Properties**
 
 | Name | Type | Description |
@@ -434,10 +586,11 @@ Feeds can be discovered and created with the Feeds class.
 | missed | <code>integer</code> |  |
 
 
-* [Feed](#Feed)
+* [Feed](#Feed) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
     * [.getVirtualFeedsUsingThisFeed()](#Feed+getVirtualFeedsUsingThisFeed) ⇒ <code>Array</code>
     * [.getOrMakePrimaryVfeed()](#Feed+getOrMakePrimaryVfeed) ⇒ <code>Promise</code>
     * [.switch()](#Feed+switch) ⇒ <code>Promise</code>
+    * [.assign(new, track)](#SnowmixItem+assign)
 
 <a name="Feed+getVirtualFeedsUsingThisFeed"></a>
 
@@ -457,17 +610,33 @@ i.e. one that is full-screen.
 Switch the output to this feed.
 
 **Kind**: instance method of <code>[Feed](#Feed)</code>  
+<a name="SnowmixItem+assign"></a>
+
+### feed.assign(new, track)
+Assign values to this item
+
+**Kind**: instance method of <code>[Feed](#Feed)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| new | <code>Object</code> | values |
+| track | <code>Boolean</code> | changes? Defaults to false, if true,sets changed=true if change found. |
+
 <a name="Feeds"></a>
 
-## Feeds
+## Feeds ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
 Handles video feeds
 (Not to be confused with Vfeeds, which are _virtual_ video feeds.)
 
 **Kind**: global class  
+**Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
 
-* [Feeds](#Feeds)
+* [Feeds](#Feeds) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
     * [.byId(ID)](#Feeds+byId) ⇒ <code>[Feed](#Feed)</code>
     * [.add(containing)](#Feeds+add) ⇒ <code>[Feed](#Feed)</code>
+    * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
+    * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
+    * [.removeAll()](#SnowmixItemCollection+removeAll)
 
 <a name="Feeds+byId"></a>
 
@@ -475,6 +644,7 @@ Handles video feeds
 Get a feed by ID
 
 **Kind**: instance method of <code>[Feeds](#Feeds)</code>  
+**Overrides:** <code>[byId](#SnowmixItemCollection+byId)</code>  
 **Returns**: <code>[Feed](#Feed)</code> - object  
 
 | Param | Type |
@@ -494,6 +664,26 @@ Or, if a video feed of the specified ID is provided, updates it.
 | --- | --- | --- |
 | containing | <code>object</code> | 'name' (required) and 'id' (optional) If omitted, id will be next highest value. |
 
+<a name="SnowmixItemCollection+all"></a>
+
+### feeds.all() ⇒ <code>array</code>
+Returns all
+
+**Kind**: instance method of <code>[Feeds](#Feeds)</code>  
+<a name="SnowmixItemCollection+allIds"></a>
+
+### feeds.allIds() ⇒ <code>array</code>
+Returns all IDs
+
+**Kind**: instance method of <code>[Feeds](#Feeds)</code>  
+**Returns**: <code>array</code> - - IDs as integers  
+<a name="SnowmixItemCollection+removeAll"></a>
+
+### feeds.removeAll()
+Remove all
+
+**Kind**: instance method of <code>[Feeds](#Feeds)</code>  
+**Fulfill**: <code>undefined</code>  
 <a name="General"></a>
 
 ## General
@@ -502,14 +692,11 @@ Handles the General commands: https://sourceforge.net/p/snowmix/wiki/Reference%2
 **Kind**: global class  
 <a name="SnowmixItem"></a>
 
-## SnowmixItem
-Abstract superclass for a Snowmix item.
-(Feed, Vfeed, Text, AudioMixer, and the rest.)
-
-**Kind**: global class  
+## *SnowmixItem*
+**Kind**: global abstract class  
 <a name="SnowmixItem+assign"></a>
 
-### snowmixItem.assign(new, track)
+### *snowmixItem.assign(new, track)*
 Assign values to this item
 
 **Kind**: instance method of <code>[SnowmixItem](#SnowmixItem)</code>  
@@ -521,37 +708,31 @@ Assign values to this item
 
 <a name="SnowmixItemCollection"></a>
 
-## SnowmixItemCollection
-**Kind**: global class  
+## *SnowmixItemCollection*
+**Kind**: global abstract class  
 
-* [SnowmixItemCollection](#SnowmixItemCollection)
-    * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
-    * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
-    * [.byId(id)](#SnowmixItemCollection+byId) ⇒
-    * [.removeAll()](#SnowmixItemCollection+removeAll)
+* *[SnowmixItemCollection](#SnowmixItemCollection)*
+    * *[.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>*
+    * *[.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>*
+    * *[.byId(id)](#SnowmixItemCollection+byId) ⇒*
+    * *[.removeAll()](#SnowmixItemCollection+removeAll)*
 
 <a name="SnowmixItemCollection+all"></a>
 
-### feeds
-Abstract superclass for a collection of one type of Snowmix item
-(Feed, Vfeed, Text, AudioMixer, and the rest.).all() ⇒ <code>array</code>
+### *snowmixItemCollection.all() ⇒ <code>array</code>*
 Returns all
 
 **Kind**: instance method of <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
 <a name="SnowmixItemCollection+allIds"></a>
 
-### feeds
-Abstract superclass for a collection of one type of Snowmix item
-(Feed, Vfeed, Text, AudioMixer, and the rest.).allIds() ⇒ <code>array</code>
+### *snowmixItemCollection.allIds() ⇒ <code>array</code>*
 Returns all IDs
 
 **Kind**: instance method of <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
 **Returns**: <code>array</code> - - IDs as integers  
 <a name="SnowmixItemCollection+byId"></a>
 
-### feeds
-Abstract superclass for a collection of one type of Snowmix item
-(Feed, Vfeed, Text, AudioMixer, and the rest.).byId(id) ⇒
+### *snowmixItemCollection.byId(id) ⇒*
 Get by ID
 
 **Kind**: instance method of <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
@@ -563,9 +744,7 @@ Get by ID
 
 <a name="SnowmixItemCollection+removeAll"></a>
 
-### feeds
-Abstract superclass for a collection of one type of Snowmix item
-(Feed, Vfeed, Text, AudioMixer, and the rest.).removeAll()
+### *snowmixItemCollection.removeAll()*
 Remove all
 
 **Kind**: instance method of <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
@@ -591,10 +770,11 @@ snowmix.systemInfo.populate().then( => { ... })
 ```
 <a name="Text"></a>
 
-## Text
+## Text ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
 A Text object (that can be placed on a video).
 
 **Kind**: global class  
+**Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
 **Properties**
 
 | Name | Type |
@@ -606,12 +786,13 @@ A Text object (that can be placed on a video).
 | offset |  | 
 
 
-* [Text](#Text)
+* [Text](#Text) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
     * [.applyAndShow()](#Text+applyAndShow)
     * [.apply()](#Text+apply) ⇒ <code>Promise</code>
     * [.show()](#Text+show) ⇒ <code>Promise</code>
     * [.hide()](#Text+hide) ⇒ <code>Promise</code>
     * [.commandsExceptStringCommand()](#Text+commandsExceptStringCommand)
+    * [.assign(new, track)](#SnowmixItem+assign)
 
 <a name="Text+applyAndShow"></a>
 
@@ -645,16 +826,33 @@ Return all commands except the 'string' command.
 This is becuase Snowmix responds differently to the string and other commands
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
+<a name="SnowmixItem+assign"></a>
+
+### text.assign(new, track)
+Assign values to this item
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| new | <code>Object</code> | values |
+| track | <code>Boolean</code> | changes? Defaults to false, if true,sets changed=true if change found. |
+
 <a name="Texts"></a>
 
-## Texts
+## Texts ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
 Handles all texts
 
 **Kind**: global class  
+**Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
 
-* [Texts](#Texts)
+* [Texts](#Texts) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
     * [.getShowingIds()](#Texts+getShowingIds) ⇒ <code>array</code>
     * [.add(containing)](#Texts+add) ⇒ <code>Promise</code>
+    * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
+    * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
+    * [.byId(id)](#SnowmixItemCollection+byId) ⇒
+    * [.removeAll()](#SnowmixItemCollection+removeAll)
 
 <a name="Texts+getShowingIds"></a>
 
@@ -674,12 +872,46 @@ Add a new text, or update an existing one if the ID exists.
 | --- | --- | --- |
 | containing | <code>object</code> | 'string' (required) and 'id' (optional) If omitted, id will be next highest value. |
 
+<a name="SnowmixItemCollection+all"></a>
+
+### texts.all() ⇒ <code>array</code>
+Returns all
+
+**Kind**: instance method of <code>[Texts](#Texts)</code>  
+<a name="SnowmixItemCollection+allIds"></a>
+
+### texts.allIds() ⇒ <code>array</code>
+Returns all IDs
+
+**Kind**: instance method of <code>[Texts](#Texts)</code>  
+**Returns**: <code>array</code> - - IDs as integers  
+<a name="SnowmixItemCollection+byId"></a>
+
+### texts.byId(id) ⇒
+Get by ID
+
+**Kind**: instance method of <code>[Texts](#Texts)</code>  
+**Returns**: - object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>integer</code> | ID |
+
+<a name="SnowmixItemCollection+removeAll"></a>
+
+### texts.removeAll()
+Remove all
+
+**Kind**: instance method of <code>[Texts](#Texts)</code>  
+**Overrides:** <code>[removeAll](#SnowmixItemCollection+removeAll)</code>  
+**Fulfill**: <code>undefined</code>  
 <a name="Vfeed"></a>
 
-## Vfeed
+## Vfeed ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
 A virtual video feed
 
 **Kind**: global class  
+**Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
 **Properties**
 
 | Name | Type | Description |
@@ -699,10 +931,11 @@ A virtual video feed
 | filter |  |  |
 
 
-* [Vfeed](#Vfeed)
+* [Vfeed](#Vfeed) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
     * [.getFeed()](#Vfeed+getFeed) ⇒ <code>[Feed](#Feed)</code>
     * [.remove()](#Vfeed+remove) ⇒ <code>Promise</code>
     * [.switch()](#Vfeed+switch) ⇒ <code>Promise</code>
+    * [.assign(new, track)](#SnowmixItem+assign)
 
 <a name="Vfeed+getFeed"></a>
 
@@ -722,9 +955,24 @@ Remove this vfeed from Snowmix
 Switch the output to this feed.
 
 **Kind**: instance method of <code>[Vfeed](#Vfeed)</code>  
+<a name="SnowmixItem+assign"></a>
+
+### vfeed.assign(new, track)
+Assign values to this item
+
+**Kind**: instance method of <code>[Vfeed](#Vfeed)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| new | <code>Object</code> | values |
+| track | <code>Boolean</code> | changes? Defaults to false, if true,sets changed=true if change found. |
+
 <a name="Vfeeds"></a>
 
 ## Vfeeds ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
+snowmix.vfeeds - controls all vfeeds (virtual video feeds)
+(Not to be confused with Feeds, which are _non-virtual_ video feeds.)
+
 **Kind**: global class  
 **Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
 
