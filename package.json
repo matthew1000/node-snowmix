@@ -5,7 +5,7 @@
   "main": "node-snowmix.js",
   "scripts": {
     "test": "node_modules/mocha/bin/mocha --reporter spec",
-    "docs": "make-docs.sh"
+    "docs": "./make-docs.js"
   },
   "author": "Matthew Clark <snowmix@matthewc.co.uk>",
   "license": "ISC",
