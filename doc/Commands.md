@@ -7,7 +7,7 @@ snowmix.commands - handles the manipulation of Snowmix commands (aka functions)
 
 * [SnowmixCommands](#SnowmixCommands)
     * [.listCommand(commandName)](#SnowmixCommands+listCommand) ⇒ <code>Promise</code>
-    * [.createCommand(commandName, Lines)](#SnowmixCommands+createCommand) ⇒ <code>Promise</code>
+    * [.createcommandName, Lines)](#SnowmixCommands+createCommand) ⇒ <code>Promise</code>
     * [.updateShowCommand()](#SnowmixCommands+updateShowCommand) ⇒ <code>Promise</code>
     * [.resetShowCommand()](#SnowmixCommands+resetShowCommand) ⇒ <code>Promise</code>
 
@@ -23,7 +23,7 @@ If the command has no contents, returns [undefined]
 
 | Param | Type |
 | --- | --- |
-| commandName | <code>String</code> | 
+| commandName | <code>String</code> |
 
 **Example**  
 ```js
@@ -31,7 +31,7 @@ snowmix.commands.listCommand('Show').then(arrayOfLines => { ... })
 ```
 <a name="SnowmixCommands+createCommand"></a>
 
-### snowmixCommands.createCommand(commandName, Lines) ⇒ <code>Promise</code>
+### snowmixCommands.createcommandName, Lines) ⇒ <code>Promise</code>
 Create a command. Replaces any that already exist with this name.
 
 **Kind**: instance method of <code>[SnowmixCommands](#SnowmixCommands)</code>  

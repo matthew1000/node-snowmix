@@ -12,6 +12,5 @@ jsdoc2md lib/Vfeeds.js > doc/Vfeeds.md
 jsdoc2md lib/Vfeed.js > doc/Vfeed.md
 jsdoc2md lib/Texts.js > doc/Texts.md
 jsdoc2md lib/Text.js > doc/Text.md
-jsdoc2md lib/General.js > doc/General.md
 jsdoc2md lib/SystemInfo.js > doc/SystemInfo.md
 jsdoc2md lib/Commands.js > doc/Commands.md
