@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 'use strict'
 let Snowmix = require('../node-snowmix'),
-    snowmix = Snowmix.new(),
-    expect = require('chai').expect
+    snowmix = Snowmix.new()
 
 describe('Audio feeds/mixers/sinks', function() {
     it('Connect to Snowmix which should load all initial audioFeeds', function() {
