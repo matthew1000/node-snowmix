@@ -46,6 +46,17 @@ it('Should get a list of all commands, including testCommand1', function() {
     })
 })
 
+it('Should set two commands being overlayed', function() {
+    return snowmix.commands.setCommandsOverlayedAtFrameEnd(['c1', 'c2'])
+})
+
+it('Get two commands being overlayed', function() {
+    return snowmix.commands.commandsOverlayedAtFrameEnd()
+    .then(commands => {
+        expect(commands).to.deep.equal(['c1', 'c2'])
+    })
+})
+
 it('Should close the Snowmix connection', function() {
     return snowmix.close()
 })
