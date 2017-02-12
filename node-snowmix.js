@@ -4,6 +4,8 @@ const net = require('net'),
       SnowmixTexts = require('./lib/Texts'),
       SnowmixFeeds = require('./lib/Feeds'),
       SnowmixVfeeds = require('./lib/Vfeeds'),
+      SnowmixImages = require('./lib/Images'),
+      SnowmixImagePlaces = require('./lib/ImagePlaces'),
       SnowmixAudioFeeds = require('./lib/AudioFeeds'),
       SnowmixAudioMixers = require('./lib/AudioMixers'),
       SnowmixAudioSinks = require('./lib/AudioSinks'),
@@ -47,6 +49,8 @@ class Snowmix {
         this.commands   = new SnowmixCommands(this)
         this.feeds      = new SnowmixFeeds(this)
         this.vfeeds     = new SnowmixVfeeds(this)
+        this.images     = new SnowmixImages(this)
+        this.imagePlaces= new SnowmixImagePlaces(this)
         this.audioFeeds = new SnowmixAudioFeeds(this)
         this.audioMixers= new SnowmixAudioMixers(this)
         this.audioSinks = new SnowmixAudioSinks(this)
@@ -187,6 +191,8 @@ class Snowmix {
         .then(() => { return this.audioMixers.populate() })
         .then(() => { return this.audioSinks.populate() })
         .then(() => { return this.texts.populate() })
+        .then(() => { return this.images.populate() })
+        .then(() => { return this.imagePlaces.populate() })
         .then(() => {
             logger.info(`There are `,
                         `${this.feeds.all().length} video feeds, `,
@@ -194,6 +200,8 @@ class Snowmix {
                         `${this.audioFeeds.all().length} audio feeds, `,
                         `${this.audioMixers.all().length} audio mixers, `,
                         `${this.audioSinks.all().length} audio sinks, `,
+                        `${this.images.all().length} images, `,
+                        `${this.imagePlaces.all().length} image places, `,
                         `${this.texts.all().length} texts`)
         })
     }

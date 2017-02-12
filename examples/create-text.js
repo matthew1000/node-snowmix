@@ -13,7 +13,7 @@ if (!textString) throw new Error('Please provide a id then string as argument')
 
 snowmix.connect()
 .then(() => {
-    return snowmix.texts.add({ string : textString, id: id })
+    return snowmix.texts.add({ string : textString, id: id, green: 1, blue: 0, red: 1, fontSize: 90 })
     .then(text => {
         return text.show()
     })
