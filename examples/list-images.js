@@ -29,8 +29,8 @@ snowmix.connect()
         console.log('There are %d image places:', images.length)
         console.log(
             new AsciiTable()
-            .setHeading('ID', 'Image ID', 'X', 'Y', 'Width', 'Height', 'Rotation', 'Alpha', 'Anchor X', 'Anchor Y', 'Horizontal align', 'Vertical align')
-            .addRowMatrix(imagePlaces.map(f => { return [f.id, f.imageId, f.x, f.y, f.width, f.height, f.rotation, f.alpha, f.anchorX, f.anchorY, f.horizontalAlign, f.verticalAlign] }))
+            .setHeading('ID', 'Image ID', 'Showing', 'X', 'Y', 'Width', 'Height', 'Rotation', 'Alpha', 'Anchor X', 'Anchor Y', 'Horizontal align', 'Vertical align')
+            .addRowMatrix(imagePlaces.map(f => { return [f.id, f.imageId, f.showing, f.x, f.y, f.width, f.height, f.rotation, f.alpha, f.anchorX, f.anchorY, f.horizontalAlign, f.verticalAlign] }))
             .toString()
         )
     }

@@ -193,6 +193,7 @@ class Snowmix {
         .then(() => { return this.texts.populate() })
         .then(() => { return this.images.populate() })
         .then(() => { return this.imagePlaces.populate() })
+        .then(() => { return this.commands.populateFromShowCommand() })
         .then(() => {
             logger.info(`There are `,
                         `${this.feeds.all().length} video feeds, `,
