@@ -15,7 +15,10 @@ snowmix.connect()
 .then(() => {
     return snowmix.images.add({ id: id, filename: filename, x: 400 })
     .then(image => {
-        return image.show()
+        return image.addPlace({x: 100, y: 100})
+        .then(imagePlace => {
+            return imagePlace.show()
+        })
     })
 }).then(() => {
     console.log('Done')

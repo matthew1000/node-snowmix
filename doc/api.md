@@ -38,6 +38,18 @@ Feeds can be discovered and created with the Feeds class.</p>
 <dt><a href="#General">General</a></dt>
 <dd><p>Handles the General commands: <a href="https://sourceforge.net/p/snowmix/wiki/Reference%20General/">https://sourceforge.net/p/snowmix/wiki/Reference%20General/</a></p>
 </dd>
+<dt><a href="#Image">Image</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
+<dd><p>An image, that can be overlayed on the video.</p>
+</dd>
+<dt><a href="#ImagePlace">ImagePlace</a> ⇐ <code><a href="#VisibleItem">VisibleItem</a></code></dt>
+<dd><p>An image placed on the video.</p>
+</dd>
+<dt><a href="#ImagePlaces">ImagePlaces</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
+<dd><p>Handles all image places</p>
+</dd>
+<dt><a href="#Images">Images</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
+<dd><p>Handles all images</p>
+</dd>
 <dt><a href="#SnowmixItem">SnowmixItem</a></dt>
 <dd></dd>
 <dt><a href="#SnowmixItemCollection">SnowmixItemCollection</a></dt>
@@ -47,7 +59,7 @@ Feeds can be discovered and created with the Feeds class.</p>
 includes <code>systemGeometry</code>, verbose, hostAllow, systemName
 For the full list, run <code>examples/system-info.js</code></p>
 </dd>
-<dt><a href="#Text">Text</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
+<dt><a href="#Text">Text</a> ⇐ <code><a href="#VisibleItem">VisibleItem</a></code></dt>
 <dd><p>A Text object (that can be placed on a video).</p>
 </dd>
 <dt><a href="#Texts">Texts</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
@@ -60,6 +72,8 @@ For the full list, run <code>examples/system-info.js</code></p>
 <dd><p>snowmix.vfeeds - controls all vfeeds (virtual video feeds)
 (Not to be confused with Feeds, which are <em>non-virtual</em> video feeds.)</p>
 </dd>
+<dt><a href="#VisibleItem">VisibleItem</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
+<dd></dd>
 </dl>
 
 ## Functions
@@ -213,7 +227,7 @@ Returns all
 Returns all IDs
 
 **Kind**: instance method of <code>[AudioFeeds](#AudioFeeds)</code>  
-**Returns**: <code>array</code> - - IDs as integers  
+**Returns**: <code>array</code> - IDs as integers  
 <a name="SnowmixItemCollection+byId"></a>
 
 ### audioFeeds.byId(id) ⇒
@@ -360,7 +374,7 @@ Returns all
 Returns all IDs
 
 **Kind**: instance method of <code>[AudioMixers](#AudioMixers)</code>  
-**Returns**: <code>array</code> - - IDs as integers  
+**Returns**: <code>array</code> - IDs as integers  
 <a name="SnowmixItemCollection+byId"></a>
 
 ### audioMixers.byId(id) ⇒
@@ -461,7 +475,7 @@ Returns all
 Returns all IDs
 
 **Kind**: instance method of <code>[AudioSinks](#AudioSinks)</code>  
-**Returns**: <code>array</code> - - IDs as integers  
+**Returns**: <code>array</code> - IDs as integers  
 <a name="SnowmixItemCollection+byId"></a>
 
 ### audioSinks.byId(id) ⇒
@@ -490,6 +504,8 @@ snowmix.commands - handles the manipulation of Snowmix commands (aka functions)
 
 * [SnowmixCommands](#SnowmixCommands)
     * [.listAll()](#SnowmixCommands+listAll) ⇒ <code>Array</code>
+    * [.commandsOverlayedAtFrameEnd()](#SnowmixCommands+commandsOverlayedAtFrameEnd) ⇒ <code>Array</code>
+    * [.setCommandsOverlayedAtFrameEnd(command)](#SnowmixCommands+setCommandsOverlayedAtFrameEnd)
     * [.list(commandName)](#SnowmixCommands+list) ⇒ <code>Promise</code>
     * [.create(commandName, Lines)](#SnowmixCommands+create) ⇒ <code>Promise</code>
     * [.delete(commandName)](#SnowmixCommands+delete) ⇒ <code>Promise</code>
@@ -507,6 +523,24 @@ Get the name of all commands
 ```js
 snowmix.commands.listAll().then(arrayOfCommmandNames => { ... })
 ```
+<a name="SnowmixCommands+commandsOverlayedAtFrameEnd"></a>
+
+### snowmixCommands.commandsOverlayedAtFrameEnd() ⇒ <code>Array</code>
+Runs 'overlay finish' to discover the names of feeds being overlayed
+
+**Kind**: instance method of <code>[SnowmixCommands](#SnowmixCommands)</code>  
+**Returns**: <code>Array</code> - command names  
+<a name="SnowmixCommands+setCommandsOverlayedAtFrameEnd"></a>
+
+### snowmixCommands.setCommandsOverlayedAtFrameEnd(command)
+Sets the commands to be run at the end (finish) of every frame
+
+**Kind**: instance method of <code>[SnowmixCommands](#SnowmixCommands)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| command | <code>Array</code> | names |
+
 <a name="SnowmixCommands+list"></a>
 
 ### snowmixCommands.list(commandName) ⇒ <code>Promise</code>
@@ -676,7 +710,7 @@ Returns all
 Returns all IDs
 
 **Kind**: instance method of <code>[Feeds](#Feeds)</code>  
-**Returns**: <code>array</code> - - IDs as integers  
+**Returns**: <code>array</code> - IDs as integers  
 <a name="SnowmixItemCollection+removeAll"></a>
 
 ### feeds.removeAll()
@@ -690,6 +724,259 @@ Remove all
 Handles the General commands: https://sourceforge.net/p/snowmix/wiki/Reference%20General/
 
 **Kind**: global class  
+<a name="General+writeSnapshotImage"></a>
+
+### general.writeSnapshotImage(filename)
+Take a snapshot of the image and write to file.
+Note this won't work unless there is something outputting the video,
+and also that there is something being ouptutted. Otherwise it willf fail silently.
+
+**Kind**: instance method of <code>[General](#General)</code>  
+
+| Param | Type |
+| --- | --- |
+| filename | <code>String</code> | 
+
+<a name="Image"></a>
+
+## Image ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
+An image, that can be overlayed on the video.
+
+**Kind**: global class  
+**Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
+**Properties**
+
+| Name | Type |
+| --- | --- |
+| id | <code>integer</code> | 
+| filename | <code>string</code> | 
+
+
+* [Image](#Image) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
+    * [.places()](#Image+places) ⇒ <code>Array</code>
+    * [.addPlace(of)](#Image+addPlace)
+    * [.apply()](#Image+apply) ⇒ <code>Promise</code>
+    * [.applyCommands()](#Image+applyCommands) ⇒ <code>String</code>
+    * [.assign(new, track)](#SnowmixItem+assign)
+
+<a name="Image+places"></a>
+
+### image.places() ⇒ <code>Array</code>
+Returns the 0 or more places for this image to be placed on the video.
+(A place defines where the image should be on the video.)
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+**Returns**: <code>Array</code> - of ImagePlace objects  
+<a name="Image+addPlace"></a>
+
+### image.addPlace(of)
+Add (or update existing) a place for this image to go.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| of | <code>object</code> | imagePlace properties (id, x, y, etc) If no id is provided, one is assigned automatically. |
+
+<a name="Image+apply"></a>
+
+### image.apply() ⇒ <code>Promise</code>
+Inform Snowmix of the current image.
+An equivalent apply() method is available for the image places.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+<a name="Image+applyCommands"></a>
+
+### image.applyCommands() ⇒ <code>String</code>
+**Kind**: instance method of <code>[Image](#Image)</code>  
+**Returns**: <code>String</code> - load command for this image  
+<a name="SnowmixItem+assign"></a>
+
+### image.assign(new, track)
+Assign values to this item
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| new | <code>Object</code> | values |
+| track | <code>Boolean</code> | changes? Defaults to false, if true,sets changed=true if change found. |
+
+<a name="ImagePlace"></a>
+
+## ImagePlace ⇐ <code>[VisibleItem](#VisibleItem)</code>
+An image placed on the video.
+
+**Kind**: global class  
+**Extends:** <code>[VisibleItem](#VisibleItem)</code>  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| id | <code>integer</code> |  |
+| imageId | <code>integer</code> |  |
+| x | <code>integer</code> |  |
+| y | <code>integer</code> |  |
+| location | <code>string</code> | (n | s | e | w | c | ne | nw | se | sw) |
+| horizontalAlign | <code>string</code> | (left | center | right) |
+| verticalAlign | <code>string</code> | (top | middle | bottom) |
+
+
+* [ImagePlace](#ImagePlace) ⇐ <code>[VisibleItem](#VisibleItem)</code>
+    * [.image()](#ImagePlace+image) ⇒ <code>[Image](#Image)</code>
+    * [.applyAndShow()](#ImagePlace+applyAndShow)
+    * [.apply()](#ImagePlace+apply) ⇒ <code>Promise</code>
+    * [.applyCommands()](#ImagePlace+applyCommands) ⇒ <code>String</code>
+    * [.show()](#VisibleItem+show) ⇒ <code>Promise</code>
+    * [.hide()](#VisibleItem+hide) ⇒ <code>Promise</code>
+    * [.assign(new, track)](#SnowmixItem+assign)
+
+<a name="ImagePlace+image"></a>
+
+### imagePlace.image() ⇒ <code>[Image](#Image)</code>
+**Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
+**Returns**: <code>[Image](#Image)</code> - the corresponding image  
+<a name="ImagePlace+applyAndShow"></a>
+
+### imagePlace.applyAndShow()
+Inform Snowmix of the current settings, and then ensure it's visible.
+
+**Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
+<a name="ImagePlace+apply"></a>
+
+### imagePlace.apply() ⇒ <code>Promise</code>
+Inform Snowmix of the current settings.
+Does not show or hide it (for that, use show() or hide())
+
+**Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
+<a name="ImagePlace+applyCommands"></a>
+
+### imagePlace.applyCommands() ⇒ <code>String</code>
+**Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
+**Returns**: <code>String</code> - the 'image place' command that will apply this place in Snowmix  
+<a name="VisibleItem+show"></a>
+
+### imagePlace.show() ⇒ <code>Promise</code>
+Shows the item. If already showing, does nothing.
+
+**Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
+<a name="VisibleItem+hide"></a>
+
+### imagePlace.hide() ⇒ <code>Promise</code>
+Hides the item. If already not showing, does nothing.
+
+**Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
+<a name="SnowmixItem+assign"></a>
+
+### imagePlace.assign(new, track)
+Assign values to this item
+
+**Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| new | <code>Object</code> | values |
+| track | <code>Boolean</code> | changes? Defaults to false, if true,sets changed=true if change found. |
+
+<a name="ImagePlaces"></a>
+
+## ImagePlaces ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
+Handles all image places
+
+**Kind**: global class  
+**Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
+
+* [ImagePlaces](#ImagePlaces) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
+    * [.getShowingIds()](#ImagePlaces+getShowingIds) ⇒ <code>array</code>
+    * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
+    * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
+    * [.byId(id)](#SnowmixItemCollection+byId) ⇒
+    * [.removeAll()](#SnowmixItemCollection+removeAll)
+
+<a name="ImagePlaces+getShowingIds"></a>
+
+### imagePlaces.getShowingIds() ⇒ <code>array</code>
+Returns the IDs of all Texts that are showing (visible).
+
+**Kind**: instance method of <code>[ImagePlaces](#ImagePlaces)</code>  
+<a name="SnowmixItemCollection+all"></a>
+
+### imagePlaces.all() ⇒ <code>array</code>
+Returns all
+
+**Kind**: instance method of <code>[ImagePlaces](#ImagePlaces)</code>  
+<a name="SnowmixItemCollection+allIds"></a>
+
+### imagePlaces.allIds() ⇒ <code>array</code>
+Returns all IDs
+
+**Kind**: instance method of <code>[ImagePlaces](#ImagePlaces)</code>  
+**Returns**: <code>array</code> - IDs as integers  
+<a name="SnowmixItemCollection+byId"></a>
+
+### imagePlaces.byId(id) ⇒
+Get by ID
+
+**Kind**: instance method of <code>[ImagePlaces](#ImagePlaces)</code>  
+**Returns**: - object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>integer</code> | ID |
+
+<a name="SnowmixItemCollection+removeAll"></a>
+
+### imagePlaces.removeAll()
+Remove all
+
+**Kind**: instance method of <code>[ImagePlaces](#ImagePlaces)</code>  
+**Fulfill**: <code>undefined</code>  
+<a name="Images"></a>
+
+## Images ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
+Handles all images
+
+**Kind**: global class  
+**Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
+
+* [Images](#Images) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
+    * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
+    * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
+    * [.byId(id)](#SnowmixItemCollection+byId) ⇒
+    * [.removeAll()](#SnowmixItemCollection+removeAll)
+
+<a name="SnowmixItemCollection+all"></a>
+
+### images.all() ⇒ <code>array</code>
+Returns all
+
+**Kind**: instance method of <code>[Images](#Images)</code>  
+<a name="SnowmixItemCollection+allIds"></a>
+
+### images.allIds() ⇒ <code>array</code>
+Returns all IDs
+
+**Kind**: instance method of <code>[Images](#Images)</code>  
+**Returns**: <code>array</code> - IDs as integers  
+<a name="SnowmixItemCollection+byId"></a>
+
+### images.byId(id) ⇒
+Get by ID
+
+**Kind**: instance method of <code>[Images](#Images)</code>  
+**Returns**: - object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>integer</code> | ID |
+
+<a name="SnowmixItemCollection+removeAll"></a>
+
+### images.removeAll()
+Remove all
+
+**Kind**: instance method of <code>[Images](#Images)</code>  
+**Fulfill**: <code>undefined</code>  
 <a name="SnowmixItem"></a>
 
 ## *SnowmixItem*
@@ -729,7 +1016,7 @@ Returns all
 Returns all IDs
 
 **Kind**: instance method of <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
-**Returns**: <code>array</code> - - IDs as integers  
+**Returns**: <code>array</code> - IDs as integers  
 <a name="SnowmixItemCollection+byId"></a>
 
 ### *snowmixItemCollection.byId(id) ⇒*
@@ -770,11 +1057,11 @@ snowmix.systemInfo.populate().then( => { ... })
 ```
 <a name="Text"></a>
 
-## Text ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
+## Text ⇐ <code>[VisibleItem](#VisibleItem)</code>
 A Text object (that can be placed on a video).
 
 **Kind**: global class  
-**Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
+**Extends:** <code>[VisibleItem](#VisibleItem)</code>  
 **Properties**
 
 | Name | Type |
@@ -786,12 +1073,12 @@ A Text object (that can be placed on a video).
 | offset |  | 
 
 
-* [Text](#Text) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
+* [Text](#Text) ⇐ <code>[VisibleItem](#VisibleItem)</code>
     * [.applyAndShow()](#Text+applyAndShow)
     * [.apply()](#Text+apply) ⇒ <code>Promise</code>
-    * [.show()](#Text+show) ⇒ <code>Promise</code>
-    * [.hide()](#Text+hide) ⇒ <code>Promise</code>
     * [.commandsExceptStringCommand()](#Text+commandsExceptStringCommand)
+    * [.show()](#VisibleItem+show) ⇒ <code>Promise</code>
+    * [.hide()](#VisibleItem+hide) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
 
 <a name="Text+applyAndShow"></a>
@@ -807,23 +1094,23 @@ Inform Snowmix of the current settings.
 Does not show or hide it (for that, use show() or hide())
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
-<a name="Text+show"></a>
-
-### text.show() ⇒ <code>Promise</code>
-Shows the text. If already showing, does nothing.
-
-**Kind**: instance method of <code>[Text](#Text)</code>  
-<a name="Text+hide"></a>
-
-### text.hide() ⇒ <code>Promise</code>
-Hides the text. If already hiding, does nothing.
-
-**Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="Text+commandsExceptStringCommand"></a>
 
 ### text.commandsExceptStringCommand()
 Return all commands except the 'string' command.
 This is becuase Snowmix responds differently to the string and other commands
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+<a name="VisibleItem+show"></a>
+
+### text.show() ⇒ <code>Promise</code>
+Shows the item. If already showing, does nothing.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+<a name="VisibleItem+hide"></a>
+
+### text.hide() ⇒ <code>Promise</code>
+Hides the item. If already not showing, does nothing.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="SnowmixItem+assign"></a>
@@ -884,7 +1171,7 @@ Returns all
 Returns all IDs
 
 **Kind**: instance method of <code>[Texts](#Texts)</code>  
-**Returns**: <code>array</code> - - IDs as integers  
+**Returns**: <code>array</code> - IDs as integers  
 <a name="SnowmixItemCollection+byId"></a>
 
 ### texts.byId(id) ⇒
@@ -1015,7 +1302,7 @@ Returns all
 Returns all IDs
 
 **Kind**: instance method of <code>[Vfeeds](#Vfeeds)</code>  
-**Returns**: <code>array</code> - - IDs as integers  
+**Returns**: <code>array</code> - IDs as integers  
 <a name="SnowmixItemCollection+byId"></a>
 
 ### vfeeds.byId(id) ⇒
@@ -1035,6 +1322,41 @@ Remove all
 
 **Kind**: instance method of <code>[Vfeeds](#Vfeeds)</code>  
 **Fulfill**: <code>undefined</code>  
+<a name="VisibleItem"></a>
+
+## *VisibleItem ⇐ <code>[SnowmixItem](#SnowmixItem)</code>*
+**Kind**: global abstract class  
+**Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
+
+* *[VisibleItem](#VisibleItem) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>*
+    * *[.show()](#VisibleItem+show) ⇒ <code>Promise</code>*
+    * *[.hide()](#VisibleItem+hide) ⇒ <code>Promise</code>*
+    * *[.assign(new, track)](#SnowmixItem+assign)*
+
+<a name="VisibleItem+show"></a>
+
+### *visibleItem.show() ⇒ <code>Promise</code>*
+Shows the item. If already showing, does nothing.
+
+**Kind**: instance method of <code>[VisibleItem](#VisibleItem)</code>  
+<a name="VisibleItem+hide"></a>
+
+### *visibleItem.hide() ⇒ <code>Promise</code>*
+Hides the item. If already not showing, does nothing.
+
+**Kind**: instance method of <code>[VisibleItem](#VisibleItem)</code>  
+<a name="SnowmixItem+assign"></a>
+
+### *visibleItem.assign(new, track)*
+Assign values to this item
+
+**Kind**: instance method of <code>[VisibleItem](#VisibleItem)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| new | <code>Object</code> | values |
+| track | <code>Boolean</code> | changes? Defaults to false, if true,sets changed=true if change found. |
+
 <a name="new"></a>
 
 ## new()
