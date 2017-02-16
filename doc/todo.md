@@ -1,9 +1,8 @@
 # Big-ticket items
 
-* Images
- * Just a (auto-documenting) tutorial remaining
-* Create snowmix.applyShow() method
+* Images - working example, auto-documenting
 * Texts - working example, auto-documenting
+* Create snowmix.applyShow() method
 * Further testing of AudioFeed/AudioMixer/AudioSink
 * Support of volume in AudioMixer
 * Ability to start Snowmix
