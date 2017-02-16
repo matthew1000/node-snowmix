@@ -171,12 +171,12 @@ An single audio feed. Use AudioFeeds to create and delete.
 
 
 * [AudioFeed](#AudioFeed) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
-    * [.remove()](#AudioFeed+remove) ⇒ <code>Promise</code>
+    * [.delete()](#AudioFeed+remove) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
 
 <a name="AudioFeed+remove"></a>
 
-### audioFeed.remove() ⇒ <code>Promise</code>
+### audioFeed.delete() ⇒ <code>Promise</code>
 Remove this audioFeed from Snowmix
 
 **Kind**: instance method of <code>[AudioFeed](#AudioFeed)</code>  
@@ -262,7 +262,7 @@ an AudioSink for output. You probably only have the need for one audio mixer.
 **Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
 
 * [AudioMixer](#AudioMixer) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
-    * [.remove()](#AudioMixer+remove) ⇒ <code>Promise</code>
+    * [.delete()](#AudioMixer+remove) ⇒ <code>Promise</code>
     * [.start()](#AudioMixer+start) ⇒ <code>Promise</code>
     * [.addAudioFeed(audioFeed)](#AudioMixer+addAudioFeed) ⇒ <code>Promise</code>
     * [.unmuteAudioFeed(audioFeed)](#AudioMixer+unmuteAudioFeed) ⇒ <code>Promise</code>
@@ -272,7 +272,7 @@ an AudioSink for output. You probably only have the need for one audio mixer.
 
 <a name="AudioMixer+remove"></a>
 
-### audioMixer.remove() ⇒ <code>Promise</code>
+### audioMixer.delete() ⇒ <code>Promise</code>
 Remove this audioMixer from Snowmix
 
 **Kind**: instance method of <code>[AudioMixer](#AudioMixer)</code>  
@@ -407,13 +407,13 @@ An single audio sink
 **Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
 
 * [AudioSink](#AudioSink) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
-    * [.remove()](#AudioSink+remove) ⇒ <code>Promise</code>
+    * [.delete()](#AudioSink+remove) ⇒ <code>Promise</code>
     * [.addAudioMixer(audioMixer)](#AudioSink+addAudioMixer) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
 
 <a name="AudioSink+remove"></a>
 
-### audioSink.remove() ⇒ <code>Promise</code>
+### audioSink.delete() ⇒ <code>Promise</code>
 Remove this audioSink from Snowmix
 
 **Kind**: instance method of <code>[AudioSink](#AudioSink)</code>  
@@ -768,7 +768,7 @@ An image, that can be overlayed on the video.
     * [.addPlace(of)](#Image+addPlace)
     * [.apply()](#Image+apply) ⇒ <code>Promise</code>
     * [.applyCommands()](#Image+applyCommands) ⇒ <code>String</code>
-    * [.remove()](#Image+remove) ⇒ <code>Promise</code>
+    * [.delete()](#Image+remove) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
 
 <a name="Image+places"></a>
@@ -804,7 +804,7 @@ An equivalent apply() method is available for the image places.
 **Returns**: <code>String</code> - load command for this image  
 <a name="Image+remove"></a>
 
-### image.remove() ⇒ <code>Promise</code>
+### image.delete() ⇒ <code>Promise</code>
 Remove this image from Snowmix
 
 **Kind**: instance method of <code>[Image](#Image)</code>  
@@ -845,7 +845,7 @@ An image placed on the video.
     * [.applyAndShow()](#ImagePlace+applyAndShow)
     * [.apply()](#ImagePlace+apply) ⇒ <code>Promise</code>
     * [.applyCommands()](#ImagePlace+applyCommands) ⇒ <code>String</code>
-    * [.remove()](#ImagePlace+remove) ⇒ <code>Promise</code>
+    * [.delete()](#ImagePlace+remove) ⇒ <code>Promise</code>
     * [.show()](#VisibleItem+show) ⇒ <code>Promise</code>
     * [.hide()](#VisibleItem+hide) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
@@ -875,7 +875,7 @@ Does not show or hide it (for that, use show() or hide())
 **Returns**: <code>String</code> - the 'image place' command that will apply this place in Snowmix  
 <a name="ImagePlace+remove"></a>
 
-### imagePlace.remove() ⇒ <code>Promise</code>
+### imagePlace.delete() ⇒ <code>Promise</code>
 Remove this ImagePlace from Snowmix
 
 **Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
@@ -1248,7 +1248,7 @@ A virtual video feed
 
 * [Vfeed](#Vfeed) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
     * [.getFeed()](#Vfeed+getFeed) ⇒ <code>[Feed](#Feed)</code>
-    * [.remove()](#Vfeed+remove) ⇒ <code>Promise</code>
+    * [.delete()](#Vfeed+remove) ⇒ <code>Promise</code>
     * [.switch()](#Vfeed+switch) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
 
@@ -1260,7 +1260,7 @@ Returns the feed object that this virtual feed is for
 **Kind**: instance method of <code>[Vfeed](#Vfeed)</code>  
 <a name="Vfeed+remove"></a>
 
-### vfeed.remove() ⇒ <code>Promise</code>
+### vfeed.delete() ⇒ <code>Promise</code>
 Remove this vfeed from Snowmix
 
 **Kind**: instance method of <code>[Vfeed](#Vfeed)</code>  

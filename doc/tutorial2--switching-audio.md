@@ -5,7 +5,7 @@ This is tutorial 2. It explains how to switch audio.
 It assumes you've completed [tutorial 1](tutorial1--switching-video.md)
 and that you already have Snowmix running and a couple of inputs. You can double-check this by running:
 
-    node-snowmix/examples/feeds-list.js
+    node-snowmix/examples/feed-list.js
 
 
 ## STEP 1: Create audio inputs

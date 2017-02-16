@@ -12,7 +12,7 @@ snowmix.connect()
 .then(() => {
     let audioFeed = snowmix.audioFeeds.byId(id)
     if (!audioFeed) throw new Error('Cannot find audioFeed with id ' + id)
-    return audioFeed.remove()
+    return audioFeed.delete()
 }).then(() => {
     console.log(`Removed audioFeed ${id}`)
 }).finally(() => {

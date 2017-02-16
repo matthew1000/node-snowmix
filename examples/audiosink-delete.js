@@ -12,7 +12,7 @@ snowmix.connect()
 .then(() => {
     let audioSink = snowmix.audioSinks.byId(id)
     if (!audioSink) throw new Error('Cannot find audioSink with id ' + id)
-    return audioSink.remove()
+    return audioSink.delete()
 }).then(() => {
     console.log(`Removed audioSink ${id}`)
 }).finally(() => {

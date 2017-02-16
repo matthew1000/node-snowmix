@@ -12,7 +12,7 @@ snowmix.connect()
 .then(() => {
     let image = snowmix.images.byId(id)
     if (!image) throw new Error('Cannot find image with id ' + id)
-    return image.remove()
+    return image.delete()
 }).then(() => {
     console.log(`Removed image ${id}`)
 }).finally(() => {

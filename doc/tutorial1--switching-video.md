@@ -32,7 +32,7 @@ Tell Snowmix you'd like a new video input feed with:
 
 You can confirm feed exists with:
 
-    node-snowmix/examples/feeds-list.js
+    node-snowmix/examples/feed-list.js
 
 Your feed should have an ID of 1;
 (Video feed 0 is a base feed in Snowmix and can be ignored.)
