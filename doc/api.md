@@ -205,7 +205,7 @@ A collection of all AudioFeeds
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
-    * [.removeAll()](#SnowmixItemCollection+removeAll)
+    * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
 <a name="AudioFeeds+add"></a>
 
@@ -244,9 +244,9 @@ Get by ID
 | --- | --- | --- |
 | id | <code>integer</code> | ID |
 
-<a name="SnowmixItemCollection+removeAll"></a>
+<a name="SnowmixItemCollection+deleteAll"></a>
 
-### audioFeeds.removeAll()
+### audioFeeds.deleteAll()
 Remove all
 
 **Kind**: instance method of <code>[AudioFeeds](#AudioFeeds)</code>  
@@ -352,7 +352,7 @@ A collection of all AudioMixers. (Note: it's rare you need more than 1!)
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
-    * [.removeAll()](#SnowmixItemCollection+removeAll)
+    * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
 <a name="AudioMixers+add"></a>
 
@@ -391,9 +391,9 @@ Get by ID
 | --- | --- | --- |
 | id | <code>integer</code> | ID |
 
-<a name="SnowmixItemCollection+removeAll"></a>
+<a name="SnowmixItemCollection+deleteAll"></a>
 
-### audioMixers.removeAll()
+### audioMixers.deleteAll()
 Remove all
 
 **Kind**: instance method of <code>[AudioMixers](#AudioMixers)</code>  
@@ -453,7 +453,7 @@ A collection of all AudioSinks. (Note: it's rare you need more than 1!)
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
-    * [.removeAll()](#SnowmixItemCollection+removeAll)
+    * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
 <a name="AudioSinks+add"></a>
 
@@ -492,9 +492,9 @@ Get by ID
 | --- | --- | --- |
 | id | <code>integer</code> | ID |
 
-<a name="SnowmixItemCollection+removeAll"></a>
+<a name="SnowmixItemCollection+deleteAll"></a>
 
-### audioSinks.removeAll()
+### audioSinks.deleteAll()
 Remove all
 
 **Kind**: instance method of <code>[AudioSinks](#AudioSinks)</code>  
@@ -681,7 +681,7 @@ A collection of all (video) Feeds.
     * [.add(containing)](#Feeds+add) ⇒ <code>[Feed](#Feed)</code>
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
-    * [.removeAll()](#SnowmixItemCollection+removeAll)
+    * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
 <a name="Feeds+byId"></a>
 
@@ -722,9 +722,9 @@ Returns all IDs
 
 **Kind**: instance method of <code>[Feeds](#Feeds)</code>  
 **Returns**: <code>array</code> - IDs as integers  
-<a name="SnowmixItemCollection+removeAll"></a>
+<a name="SnowmixItemCollection+deleteAll"></a>
 
-### feeds.removeAll()
+### feeds.deleteAll()
 Remove all
 
 **Kind**: instance method of <code>[Feeds](#Feeds)</code>  
@@ -916,7 +916,7 @@ A collection of all ImagePlaces (that is, places where images can go on the vide
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
-    * [.removeAll()](#SnowmixItemCollection+removeAll)
+    * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
 <a name="ImagePlaces+getShowingIds"></a>
 
@@ -949,9 +949,9 @@ Get by ID
 | --- | --- | --- |
 | id | <code>integer</code> | ID |
 
-<a name="SnowmixItemCollection+removeAll"></a>
+<a name="SnowmixItemCollection+deleteAll"></a>
 
-### imagePlaces.removeAll()
+### imagePlaces.deleteAll()
 Remove all
 
 **Kind**: instance method of <code>[ImagePlaces](#ImagePlaces)</code>  
@@ -968,7 +968,7 @@ Handles all images
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
-    * [.removeAll()](#SnowmixItemCollection+removeAll)
+    * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
 <a name="SnowmixItemCollection+all"></a>
 
@@ -995,9 +995,9 @@ Get by ID
 | --- | --- | --- |
 | id | <code>integer</code> | ID |
 
-<a name="SnowmixItemCollection+removeAll"></a>
+<a name="SnowmixItemCollection+deleteAll"></a>
 
-### images.removeAll()
+### images.deleteAll()
 Remove all
 
 **Kind**: instance method of <code>[Images](#Images)</code>  
@@ -1030,7 +1030,7 @@ Assign values to this item
     * *[.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>*
     * *[.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>*
     * *[.byId(id)](#SnowmixItemCollection+byId) ⇒*
-    * *[.removeAll()](#SnowmixItemCollection+removeAll)*
+    * *[.deleteAll()](#SnowmixItemCollection+deleteAll)*
 
 <a name="SnowmixItemCollection+all"></a>
 
@@ -1057,9 +1057,9 @@ Get by ID
 | --- | --- | --- |
 | id | <code>integer</code> | ID |
 
-<a name="SnowmixItemCollection+removeAll"></a>
+<a name="SnowmixItemCollection+deleteAll"></a>
 
-### *snowmixItemCollection.removeAll()*
+### *snowmixItemCollection.deleteAll()*
 Remove all
 
 **Kind**: instance method of <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
@@ -1167,7 +1167,7 @@ Handles all texts
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
-    * [.removeAll()](#SnowmixItemCollection+removeAll)
+    * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
 <a name="Texts+getShowingIds"></a>
 
@@ -1212,13 +1212,13 @@ Get by ID
 | --- | --- | --- |
 | id | <code>integer</code> | ID |
 
-<a name="SnowmixItemCollection+removeAll"></a>
+<a name="SnowmixItemCollection+deleteAll"></a>
 
-### texts.removeAll()
+### texts.deleteAll()
 Remove all
 
 **Kind**: instance method of <code>[Texts](#Texts)</code>  
-**Overrides:** <code>[removeAll](#SnowmixItemCollection+removeAll)</code>  
+**Overrides:** <code>[deleteAll](#SnowmixItemCollection+deleteAll)</code>  
 **Fulfill**: <code>undefined</code>  
 <a name="Vfeed"></a>
 
@@ -1297,7 +1297,7 @@ snowmix.vfeeds - controls all vfeeds (virtual video feeds)
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
-    * [.removeAll()](#SnowmixItemCollection+removeAll)
+    * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
 <a name="Vfeeds+getShowingIds"></a>
 
@@ -1343,9 +1343,9 @@ Get by ID
 | --- | --- | --- |
 | id | <code>integer</code> | ID |
 
-<a name="SnowmixItemCollection+removeAll"></a>
+<a name="SnowmixItemCollection+deleteAll"></a>
 
-### vfeeds.removeAll()
+### vfeeds.deleteAll()
 Remove all
 
 **Kind**: instance method of <code>[Vfeeds](#Vfeeds)</code>  

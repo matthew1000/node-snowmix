@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict'
 /**
- * Creates an audioSink
+ * Deletes an audioSink
  */
 let Snowmix = require('../node-snowmix'),
     snowmix = Snowmix.new(),

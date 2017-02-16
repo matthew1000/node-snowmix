@@ -1,8 +1,14 @@
+# Node-Snowmix Tutorial 1: Video
+
 This is tutorial 1. It explains how to switch between two video sources.
 
 You will need:
 
-* A machine with Snowmix, node-snowmix, and gstreamer installed
+* A Mac or Linux machine
+* Gstreamer installed (use your package manager)
+* Node.JS v6 or higher installed (test with `node -v` or `nodejs -v`)
+* Snowmix installed ([instructions here](http://snowmix.sourceforge.net/Intro/compileandinstall.html))
+* node-snowmix installed (best way is to `npm init` then `npm -i node-snowmix` then find `node_modules` dir)
 * Two mp4 video files, to act as inputs
 
 ## STEP 1: Create the simplest possible Snowmix config file containing:
@@ -26,7 +32,7 @@ Tell Snowmix you'd like a new video input feed with:
 
 You can confirm feed exists with:
 
-    node-snowmix/examples/list-feeds.js
+    node-snowmix/examples/feeds-list.js
 
 Your feed should have an ID of 1;
 (Video feed 0 is a base feed in Snowmix and can be ignored.)
@@ -39,7 +45,7 @@ some helper scripts are available in the [scripts/](../scripts/) directory.
 
 Run it like this:
 
-    node-snowmix/scripts/file-to-snowmix-no-audio.sh 1 <full path to MP4 file>
+    node-snowmix/scripts/file-to-snowmix-no-audio.sh 1 <full path to MP4 video file>
 
 Note, it really must be a full path, relative paths don't work!
 

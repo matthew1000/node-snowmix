@@ -122,9 +122,9 @@ By default, text will be shown in the bottom-left, black on a translucent grey b
 
 All fields can be overridden, such as `x` and `y` (to set the location) and `location` (which can be one of `ne`, `nw`, `se`, ```sw```).
 
-## Full Documentation...
+## Full Documentation and tutorials...
 
-...is available [here](./doc#classes).
+...are available [here](./doc)
 
 ## Further examples...
 

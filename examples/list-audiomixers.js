@@ -16,7 +16,7 @@ snowmix.connect()
         console.log(
             new AsciiTable()
             .setHeading('ID', 'Name', 'State', 'Channels', 'Muted?', 'Rate', 'Delay', 'Queues', 'Buffer size', 'Byte per sample', 'Signess', 'Audio feed IDs')
-            .addRowMatrix(audioMixers.map(f => { return [f.id, f.name, f.state, f.channels, f.muted, f.rate, f.delay, f.queues, f.bufferSize, f.bytePerSample, f.signess, Object.keys(f.audioFeeds).join(',')]}))
+            .addRowMatrix(audioMixers.map(f => { return [f.id, f.name, f.state, f.channels, f.muted, f.rate, f.delay, f.queues, f.bufferSize, f.bytePerSample, f.signess, summariseAudioFeeds(f.audioFeeds)]}))
             .toString()
         )
     }
@@ -27,3 +27,9 @@ snowmix.connect()
 .finally(() => {
     return snowmix.close()
 })
+
+function summariseAudioFeeds(audioFeeds) {
+    return Object.keys(audioFeeds)
+    .map(id => { return `${id} (${audioFeeds[id].muted ? 'muted' : 'unmuted' })` })
+    .join(', ')
+}

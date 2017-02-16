@@ -11,7 +11,7 @@ describe('AudioSinks', function() {
     })
 
     it('Remove any audioSinks lying around', function() {
-        return snowmix.audioSinks.removeAll()
+        return snowmix.audioSinks.deleteAll()
     })
 
     it('Initially be no audioSinks', function() {
@@ -64,7 +64,7 @@ describe('AudioSinks', function() {
     })
 
     it('Remove remove the audioSinks', function() {
-        return snowmix.audioSinks.removeAll()
+        return snowmix.audioSinks.deleteAll()
     })
 
     it('Should close the Snowmix connection', function() {

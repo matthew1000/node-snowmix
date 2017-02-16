@@ -4,8 +4,8 @@ and each snowmix object, such as a video feed or an audio mixer.
 ## Node.JS API
 
 * [API](./api.md) - documentation of the API (all items objects)
-* [Tutorial 1: Switching video](./api-tutorial1--switching-video.md)
-* [Tutorial 2: Switching audio](./api-tutorial2--switching-audio.md)
+* [Tutorial 1: Switching video](./tutorial1--switching-video.md)
+* [Tutorial 2: Switching audio](./tutorial2--switching-audio.md)
 
 ## Other
 

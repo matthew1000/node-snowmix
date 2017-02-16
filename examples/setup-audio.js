@@ -12,9 +12,9 @@ let Snowmix = require('../node-snowmix'),
 snowmix.connect()
 .then(() => {
     return Promise.all([
-        snowmix.audioFeeds.removeAll(),
-        snowmix.audioMixers.removeAll(),
-        snowmix.audioSinks.removeAll(),
+        snowmix.audioFeeds.deleteAll(),
+        snowmix.audioMixers.deleteAll(),
+        snowmix.audioSinks.deleteAll(),
     ])
 }).then(() => {
     return Promise.all([

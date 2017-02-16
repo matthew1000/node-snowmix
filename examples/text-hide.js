@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict'
 /**
- * Creates  a text and display it on the video
+ * Hides a text
  */
 let Snowmix = require('../node-snowmix'),
     snowmix = Snowmix.new(),

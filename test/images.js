@@ -12,8 +12,8 @@ describe('AudioFeeds', function() {
     })
 
     it('Remove any Images and ImagePlaces lying around', function() {
-        return snowmix.images.removeAll()
-        .then(() => { return snowmix.imagePlaces.removeAll()})
+        return snowmix.images.deleteAll()
+        .then(() => { return snowmix.imagePlaces.deleteAll()})
     })
 
     it('Initially be no Images or ImagePlaces', function() {
@@ -92,8 +92,8 @@ describe('AudioFeeds', function() {
     })
 
     it('Remove the Images and ImagePlaces created', function() {
-        return snowmix.images.removeAll()
-        .then(() => { return snowmix.imagePlaces.removeAll()})
+        return snowmix.images.deleteAll()
+        .then(() => { return snowmix.imagePlaces.deleteAll()})
     })
 
     it('Finally now be no Images or ImagePlaces', function() {

@@ -11,7 +11,7 @@ describe('AudioMixers', function() {
     })
 
     it('Remove any audioMixers lying around', function() {
-        return snowmix.audioMixers.removeAll()
+        return snowmix.audioMixers.deleteAll()
     })
 
     it('Initially be no audioMixers', function() {
@@ -64,7 +64,7 @@ describe('AudioMixers', function() {
     })
 
     it('Remove all created audioMixers', function() {
-        return snowmix.audioMixers.removeAll()
+        return snowmix.audioMixers.deleteAll()
     })
 
     it('Should close the Snowmix connection', function() {

@@ -10,9 +10,9 @@ describe('Audio feeds/mixers/sinks', function() {
 
     it('Remove any audio feeds/mixers/sinks lying around', function() {
         return Promise.all([
-            snowmix.audioFeeds.removeAll(),
-            snowmix.audioMixers.removeAll(),
-            snowmix.audioSinks.removeAll(),
+            snowmix.audioFeeds.deleteAll(),
+            snowmix.audioMixers.deleteAll(),
+            snowmix.audioSinks.deleteAll(),
         ])
     })
 
@@ -49,9 +49,9 @@ describe('Audio feeds/mixers/sinks', function() {
 
     it('Remove all created audio feeds/mixers/sinks', function() {
         return Promise.all([
-            snowmix.audioFeeds.removeAll(),
-            snowmix.audioMixers.removeAll(),
-            snowmix.audioSinks.removeAll(),
+            snowmix.audioFeeds.deleteAll(),
+            snowmix.audioMixers.deleteAll(),
+            snowmix.audioSinks.deleteAll(),
         ])
     })
 

@@ -12,7 +12,7 @@ describe('AudioFeeds', function() {
     })
 
     it('Remove any audioFeeds lying around', function() {
-        return snowmix.audioFeeds.removeAll()
+        return snowmix.audioFeeds.deleteAll()
     })
 
     it('Initially be no audioFeeds', function() {

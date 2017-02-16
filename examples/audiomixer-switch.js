@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 'use strict'
 /**
- * Creates an audioMixer
+ * Switch an AudioMixer to one or more AudioFeeds
+ * Usage: audiomixer-switch.js <audioMixerId> <audioFeedId>...
  */
 let Snowmix = require('../node-snowmix'),
     snowmix = Snowmix.new(),

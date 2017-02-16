@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict'
 /**
- * Creates an audioFeed
+ * Deletes an AudioFeed
  */
 let Snowmix = require('../node-snowmix'),
     snowmix = Snowmix.new(),

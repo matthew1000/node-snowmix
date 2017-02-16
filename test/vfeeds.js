@@ -12,7 +12,7 @@ describe('Vfeeds', function() {
     })
 
     it('Remove any vfeeds lying around', function() {
-        return snowmix.vfeeds.removeAll()
+        return snowmix.vfeeds.deleteAll()
     })
 
     it('Initially be no vfeeds', function() {
