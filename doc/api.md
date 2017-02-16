@@ -8,7 +8,7 @@
 <dd><p>An single audio feed. Use AudioFeeds to create and delete.</p>
 </dd>
 <dt><a href="#AudioFeeds">AudioFeeds</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
-<dd><p>Handles all audio feeds</p>
+<dd><p>A collection of all AudioFeeds</p>
 </dd>
 <dt><a href="#AudioMixer">AudioMixer</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
 <dd><p>An single audio mixer. Use <code>AudioMixers</code> to create and delete.
@@ -16,13 +16,13 @@ An audio mixer allows audio feeds to be mixed together, and then sent to
 an AudioSink for output. You probably only have the need for one audio mixer.</p>
 </dd>
 <dt><a href="#AudioMixers">AudioMixers</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
-<dd><p>Handles all audio mixers</p>
+<dd><p>A collection of all AudioMixers. (Note: it&#39;s rare you need more than 1!)</p>
 </dd>
 <dt><a href="#AudioSink">AudioSink</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
 <dd><p>An single audio sink</p>
 </dd>
 <dt><a href="#AudioSinks">AudioSinks</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
-<dd><p>Handles all audio sinks</p>
+<dd><p>A collection of all AudioSinks. (Note: it&#39;s rare you need more than 1!)</p>
 </dd>
 <dt><a href="#SnowmixCommands">SnowmixCommands</a></dt>
 <dd><p>snowmix.commands - handles the manipulation of Snowmix commands (aka functions)</p>
@@ -32,7 +32,7 @@ an AudioSink for output. You probably only have the need for one audio mixer.</p
 Feeds can be discovered and created with the Feeds class.</p>
 </dd>
 <dt><a href="#Feeds">Feeds</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
-<dd><p>Handles video feeds
+<dd><p>A collection of all (video) Feeds.
 (Not to be confused with Vfeeds, which are <em>virtual</em> video feeds.)</p>
 </dd>
 <dt><a href="#General">General</a></dt>
@@ -45,13 +45,15 @@ Feeds can be discovered and created with the Feeds class.</p>
 <dd><p>An image placed on the video.</p>
 </dd>
 <dt><a href="#ImagePlaces">ImagePlaces</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
-<dd><p>Handles all image places</p>
+<dd><p>A collection of all ImagePlaces (that is, places where images can go on the video.)</p>
 </dd>
 <dt><a href="#Images">Images</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
 <dd><p>Handles all images</p>
 </dd>
 <dt><a href="#SnowmixItem">SnowmixItem</a></dt>
-<dd></dd>
+<dd><p>Abstract superclass for a Snowmix item.
+(Feed, Vfeed, Text, AudioMixer, and the rest.)</p>
+</dd>
 <dt><a href="#SnowmixItemCollection">SnowmixItemCollection</a></dt>
 <dd></dd>
 <dt><a href="#SystemInfo">SystemInfo</a></dt>
@@ -73,7 +75,9 @@ For the full list, run <code>examples/system-info.js</code></p>
 (Not to be confused with Feeds, which are <em>non-virtual</em> video feeds.)</p>
 </dd>
 <dt><a href="#VisibleItem">VisibleItem</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
-<dd></dd>
+<dd><p>Abstract superclass for an item that is visible on the video
+i.e. Vfeed, Text, Image</p>
+</dd>
 </dl>
 
 ## Functions
@@ -191,7 +195,7 @@ Assign values to this item
 <a name="AudioFeeds"></a>
 
 ## AudioFeeds ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
-Handles all audio feeds
+A collection of all AudioFeeds
 
 **Kind**: global class  
 **Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
@@ -338,7 +342,7 @@ Assign values to this item
 <a name="AudioMixers"></a>
 
 ## AudioMixers ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
-Handles all audio mixers
+A collection of all AudioMixers. (Note: it's rare you need more than 1!)
 
 **Kind**: global class  
 **Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
@@ -439,7 +443,7 @@ Assign values to this item
 <a name="AudioSinks"></a>
 
 ## AudioSinks ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
-Handles all audio sinks
+A collection of all AudioSinks. (Note: it's rare you need more than 1!)
 
 **Kind**: global class  
 **Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
@@ -509,6 +513,7 @@ snowmix.commands - handles the manipulation of Snowmix commands (aka functions)
     * [.list(commandName)](#SnowmixCommands+list) ⇒ <code>Promise</code>
     * [.create(commandName, Lines)](#SnowmixCommands+create) ⇒ <code>Promise</code>
     * [.delete(commandName)](#SnowmixCommands+delete) ⇒ <code>Promise</code>
+    * [.populateFromShowCommand()](#SnowmixCommands+populateFromShowCommand) ⇒ <code>Promise</code>
     * [.updateShowCommand()](#SnowmixCommands+updateShowCommand) ⇒ <code>Promise</code>
     * [.resetShowCommand()](#SnowmixCommands+resetShowCommand) ⇒ <code>Promise</code>
 
@@ -584,6 +589,12 @@ Note if the command does not exist it will create a warning
 | --- | --- |
 | commandName | <code>String</code> | 
 
+<a name="SnowmixCommands+populateFromShowCommand"></a>
+
+### snowmixCommands.populateFromShowCommand() ⇒ <code>Promise</code>
+Looks at 'show' command to determine what's showing. Then updates each object's 'show' state to contain this.
+
+**Kind**: instance method of <code>[SnowmixCommands](#SnowmixCommands)</code>  
 <a name="SnowmixCommands+updateShowCommand"></a>
 
 ### snowmixCommands.updateShowCommand() ⇒ <code>Promise</code>
@@ -659,7 +670,7 @@ Assign values to this item
 <a name="Feeds"></a>
 
 ## Feeds ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
-Handles video feeds
+A collection of all (video) Feeds.
 (Not to be confused with Vfeeds, which are _virtual_ video feeds.)
 
 **Kind**: global class  
@@ -757,6 +768,7 @@ An image, that can be overlayed on the video.
     * [.addPlace(of)](#Image+addPlace)
     * [.apply()](#Image+apply) ⇒ <code>Promise</code>
     * [.applyCommands()](#Image+applyCommands) ⇒ <code>String</code>
+    * [.remove()](#Image+remove) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
 
 <a name="Image+places"></a>
@@ -790,6 +802,12 @@ An equivalent apply() method is available for the image places.
 ### image.applyCommands() ⇒ <code>String</code>
 **Kind**: instance method of <code>[Image](#Image)</code>  
 **Returns**: <code>String</code> - load command for this image  
+<a name="Image+remove"></a>
+
+### image.remove() ⇒ <code>Promise</code>
+Remove this image from Snowmix
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
 <a name="SnowmixItem+assign"></a>
 
 ### image.assign(new, track)
@@ -827,6 +845,7 @@ An image placed on the video.
     * [.applyAndShow()](#ImagePlace+applyAndShow)
     * [.apply()](#ImagePlace+apply) ⇒ <code>Promise</code>
     * [.applyCommands()](#ImagePlace+applyCommands) ⇒ <code>String</code>
+    * [.remove()](#ImagePlace+remove) ⇒ <code>Promise</code>
     * [.show()](#VisibleItem+show) ⇒ <code>Promise</code>
     * [.hide()](#VisibleItem+hide) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
@@ -854,6 +873,12 @@ Does not show or hide it (for that, use show() or hide())
 ### imagePlace.applyCommands() ⇒ <code>String</code>
 **Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
 **Returns**: <code>String</code> - the 'image place' command that will apply this place in Snowmix  
+<a name="ImagePlace+remove"></a>
+
+### imagePlace.remove() ⇒ <code>Promise</code>
+Remove this ImagePlace from Snowmix
+
+**Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
 <a name="VisibleItem+show"></a>
 
 ### imagePlace.show() ⇒ <code>Promise</code>
@@ -881,7 +906,7 @@ Assign values to this item
 <a name="ImagePlaces"></a>
 
 ## ImagePlaces ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
-Handles all image places
+A collection of all ImagePlaces (that is, places where images can go on the video.)
 
 **Kind**: global class  
 **Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
@@ -980,6 +1005,9 @@ Remove all
 <a name="SnowmixItem"></a>
 
 ## *SnowmixItem*
+Abstract superclass for a Snowmix item.
+(Feed, Vfeed, Text, AudioMixer, and the rest.)
+
 **Kind**: global abstract class  
 <a name="SnowmixItem+assign"></a>
 
@@ -1325,6 +1353,9 @@ Remove all
 <a name="VisibleItem"></a>
 
 ## *VisibleItem ⇐ <code>[SnowmixItem](#SnowmixItem)</code>*
+Abstract superclass for an item that is visible on the video
+i.e. Vfeed, Text, Image
+
 **Kind**: global abstract class  
 **Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
 
