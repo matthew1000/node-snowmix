@@ -64,13 +64,13 @@ Type:
 However, you will have a blank screen and no sound!
 We need to tell Snowmix to switch to the input we've provided.
 
-## STEP 6: Switch the video
+## STEP 6: Show source 1
 
     node-snowmix/examples/video-switch.js 1
 
 You should now see video. Horrah!
 
-## STEP 7: switching
+## STEP 7: Switching between sources
 
 Repeat steps *3* and *5* to create a second source.
 

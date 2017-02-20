@@ -52,16 +52,39 @@ i.e.
     node-snowmix/scripts/file-to-snowmix.sh 1 <full path to MP4 video file>
     node-snowmix/scripts/file-to-snowmix.sh 2 <full path to MP4 video file>
 
-If you're still running `av_output2screen`, as part of tutorial 1, you should still see the output of one of these videos. And you should still be able to switch between them with `examples/switch-video.js`.
+If you're still running `av_output2screen`, as part of tutorial 1, you should still see the output of one of these videos. And you should still be able to switch between them with `examples/feed-switch.js`.
 
-# STEP 4: Selecting an audio input
+## STEP 4: Switch to audio feed 1
 
-TODO!!!
+You shouldn't hear any audio yet, because we've not switched to any.
+This command tells audio mixer 1 to switch to audio feed 1:
 
-# STEP 5: Switching between audio inputs
+    node-snowmix/scripts/audiomixer-switch.js 1 1
 
-TODO!!!
+All being well, you should have sound!
 
-## Next steps
+## STEP 4: Switching between audio feeds
 
-They're not written yet, but the plan is for tutorials on images and texts.
+Then switch to audio feed 2 with:
+
+    node-snowmix/scripts/audiomixer-switch.js 1 2
+
+And if you're slightly crazy, you can unmute them both with:
+
+    node-snowmix/scripts/audiomixer-switch.js 1 1 2
+
+## On the to-do list
+
+This library and tutorial hopes in the future to explain:
+
+* How to change volume levels of each input.
+* How to do video and audio changes at the same time.
+
+# Next steps
+
+That's it for the tutorial for now.
+(Requests and pull-requests for more turotials welcome.)
+
+You might like to explore the [Examples](../examples/) to see how images and texts work.
+
+Happy mixing!

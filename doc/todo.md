@@ -1,20 +1,15 @@
 # Big-ticket items
 
-* Consider renaming create() to create()
-* Create snowmix.applyShow() method
+* There should be one snowmix.apply() method for transactional changes.
 * Command-line interface
-* Further testing of AudioFeed/AudioMixer/AudioSink
 * Support of volume in AudioMixer
+* Different size vfeeds, to create video walles and do picture-in-picture
 * Ability to start Snowmix
-* scripts have hard-coded sizes in them
+* Scripts have hard-coded sizes in them
 
 # Bugs
 
 * Hard-coded values in Feed.apply()
-
-# Documentation
-
-* Additional tutorials: text and images
 
 # Missing unit tests
 
