@@ -21,7 +21,7 @@ Snowmix is tool that's built on GStreamer. Snowmix allows the video & audio so t
 
 This library models and provides helper functions for *feeds*, *vfeeds* (virtual feeds), *audio feeds*, *texts*, and *images*. Other things (e.g. shapes) can still be handled by sending the relevant Tcl commands.
 
-This library does not currently start or stop Snowmix.
+This library does not currently start Snowmix.
 Nor does it help control the (GStreamer) inputs and outputs, though there are some [example scripts](./scripts) to get you going.
 
 # Usage
@@ -100,10 +100,10 @@ In the mean time, you can use `sendCommand()` to access all of Snowmix's abiliti
 
 ## Audio control
 
-As with video, switch to an audio source using `switch()` on the relevant `AudioFeed` instance:
+Audio feeds can also be switched, on the audio mixer. For example, this command switches audio mixer 1 exclusively to audio feed 2:
 
 ```js
-snowmix.audioFeeds.byId(1).switch()
+snowmix.audioMixers.byId(1).switchToAudioFeeds(2)
 .then(() => { ... })
 ```
 
@@ -122,6 +122,20 @@ myText1.show()
 By default, text will be shown in the bottom-left, black on a translucent grey background.
 
 All fields can be overridden, such as `x` and `y` (to set the location) and `location` (which can be one of `ne`, `nw`, `se`, `sw`).
+
+## Images
+
+To overlay a PNG image on your video, create a 'Image' object, and then create a place for it.
+
+```js
+snowmix.images.create({ id: 1, filename: '/path/to/image.png' })
+.then(image => {
+    return image.addPlace({x: 100, y: 200})
+    .then(imagePlace => {
+        return imagePlace.show()
+    })
+})
+```
 
 ## Full Documentation and tutorials...
 
