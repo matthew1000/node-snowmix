@@ -18,11 +18,11 @@ snowmix.connect()
     ])
 }).then(() => {
     return Promise.all([
-        snowmix.audioFeeds.add(),
-        snowmix.audioFeeds.add(),
-        snowmix.audioFeeds.add(),
-        snowmix.audioMixers.add(),
-        snowmix.audioSinks.add(),
+        snowmix.audioFeeds.create(),
+        snowmix.audioFeeds.create(),
+        snowmix.audioFeeds.create(),
+        snowmix.audioMixers.create(),
+        snowmix.audioSinks.create(),
     ])
 }).then(() => {
     return Promise.all([

@@ -10,7 +10,7 @@ let Snowmix = require('../node-snowmix'),
 
 snowmix.connect()
 .then(() => {
-    return snowmix.feeds.add({name : name, id: id})
+    return snowmix.feeds.create({name : name, id: id})
 }).then(feed => {
     console.log(`Created feed with id ${feed.id} and name '${feed.name}'`)
 }).finally(() => {

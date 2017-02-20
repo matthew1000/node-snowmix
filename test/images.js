@@ -22,7 +22,7 @@ describe('AudioFeeds', function() {
     })
 
     it('create image #1', function() {
-        return snowmix.images.add({id: 1, filename: __dirname + '/../examples/assets/cat.png'})
+        return snowmix.images.create({id: 1, filename: __dirname + '/../examples/assets/cat.png'})
     })
 
     it('should have 1 image, with the correct details, and no ImagePlaces', function() {
@@ -46,7 +46,7 @@ describe('AudioFeeds', function() {
     })
 
     it('create image #2', function() {
-        return snowmix.images.add({id: 2, filename: __dirname + '/../examples/assets/leopard.png'})
+        return snowmix.images.create({id: 2, filename: __dirname + '/../examples/assets/leopard.png'})
     })
 
     it('create ImagePlace #2 referring to image #1', function() {

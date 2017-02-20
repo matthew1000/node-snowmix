@@ -5,14 +5,16 @@
 <dd><p>The main Snowmix class. Use snowmix.new() to construct.</p>
 </dd>
 <dt><a href="#AudioFeed">AudioFeed</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
-<dd><p>An single audio feed. Use AudioFeeds to create and delete.</p>
+<dd><p>An single audio feed.
+Create with <code>showmix.audioFeeds.create({ ... })</code></p>
 </dd>
 <dt><a href="#AudioFeeds">AudioFeeds</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
 <dd><p>A collection of all AudioFeeds</p>
 </dd>
 <dt><a href="#AudioMixer">AudioMixer</a> ⇐ <code><a href="#SnowmixItem">SnowmixItem</a></code></dt>
-<dd><p>An single audio mixer. Use <code>AudioMixers</code> to create and delete.
-An audio mixer allows audio feeds to be mixed together, and then sent to
+<dd><p>An single audio mixer.
+Create with <code>showmix.audioMixers.create({ ... })</code>
+An AudioMixer allows audio feeds to be mixed together, and then sent to
 an AudioSink for output. You probably only have the need for one audio mixer.</p>
 </dd>
 <dt><a href="#AudioMixers">AudioMixers</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
@@ -42,7 +44,8 @@ Feeds can be discovered and created with the Feeds class.</p>
 <dd><p>An image, that can be overlayed on the video.</p>
 </dd>
 <dt><a href="#ImagePlace">ImagePlace</a> ⇐ <code><a href="#VisibleItem">VisibleItem</a></code></dt>
-<dd><p>An image placed on the video.</p>
+<dd><p>An image placed on the video.
+<a href="https://sourceforge.net/p/snowmix/wiki/Reference%20Images/#image-place">https://sourceforge.net/p/snowmix/wiki/Reference%20Images/#image-place</a></p>
 </dd>
 <dt><a href="#ImagePlaces">ImagePlaces</a> ⇐ <code><a href="#SnowmixItemCollection">SnowmixItemCollection</a></code></dt>
 <dd><p>A collection of all ImagePlaces (that is, places where images can go on the video.)</p>
@@ -116,7 +119,7 @@ snowmix.connect().then(() => { snowmix.sendCommand(...) }
 <a name="Snowmix+close"></a>
 
 ### snowmix.close()
-Close the connection to Snowmix. (Does not stop Snowmix.)
+Close the connection to Snowmix. (Does not stop Snowmix - for that use snowmix.general.close())
 
 **Kind**: instance method of <code>[Snowmix](#Snowmix)</code>  
 **Example**  
@@ -149,7 +152,8 @@ Optional arguments:
 <a name="AudioFeed"></a>
 
 ## AudioFeed ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
-An single audio feed. Use AudioFeeds to create and delete.
+An single audio feed.
+Create with `showmix.audioFeeds.create({ ... })`
 
 **Kind**: global class  
 **Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
@@ -171,13 +175,13 @@ An single audio feed. Use AudioFeeds to create and delete.
 
 
 * [AudioFeed](#AudioFeed) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
-    * [.delete()](#AudioFeed+remove) ⇒ <code>Promise</code>
+    * [.delete()](#AudioFeed+delete) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
 
-<a name="AudioFeed+remove"></a>
+<a name="AudioFeed+delete"></a>
 
 ### audioFeed.delete() ⇒ <code>Promise</code>
-Remove this audioFeed from Snowmix
+Delete this AudioFeed
 
 **Kind**: instance method of <code>[AudioFeed](#AudioFeed)</code>  
 <a name="SnowmixItem+assign"></a>
@@ -186,6 +190,7 @@ Remove this audioFeed from Snowmix
 Assign values to this item
 
 **Kind**: instance method of <code>[AudioFeed](#AudioFeed)</code>  
+**Access:** protected  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -201,15 +206,15 @@ A collection of all AudioFeeds
 **Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
 
 * [AudioFeeds](#AudioFeeds) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
-    * [.add(containing)](#AudioFeeds+add)
+    * [.create(containing)](#AudioFeeds+create)
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
     * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
-<a name="AudioFeeds+add"></a>
+<a name="AudioFeeds+create"></a>
 
-### audioFeeds.add(containing)
+### audioFeeds.create(containing)
 Add a new audio feed.
 Of, if an audio feed of the specified ID is provided, updates it.
 
@@ -254,15 +259,16 @@ Remove all
 <a name="AudioMixer"></a>
 
 ## AudioMixer ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
-An single audio mixer. Use `AudioMixers` to create and delete.
-An audio mixer allows audio feeds to be mixed together, and then sent to
+An single audio mixer.
+Create with `showmix.audioMixers.create({ ... })`
+An AudioMixer allows audio feeds to be mixed together, and then sent to
 an AudioSink for output. You probably only have the need for one audio mixer.
 
 **Kind**: global class  
 **Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
 
 * [AudioMixer](#AudioMixer) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
-    * [.delete()](#AudioMixer+remove) ⇒ <code>Promise</code>
+    * [.delete()](#AudioMixer+delete) ⇒ <code>Promise</code>
     * [.start()](#AudioMixer+start) ⇒ <code>Promise</code>
     * [.addAudioFeed(audioFeed)](#AudioMixer+addAudioFeed) ⇒ <code>Promise</code>
     * [.unmuteAudioFeed(audioFeed)](#AudioMixer+unmuteAudioFeed) ⇒ <code>Promise</code>
@@ -270,17 +276,18 @@ an AudioSink for output. You probably only have the need for one audio mixer.
     * [.switchToAudioFeeds(of)](#AudioMixer+switchToAudioFeeds) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
 
-<a name="AudioMixer+remove"></a>
+<a name="AudioMixer+delete"></a>
 
 ### audioMixer.delete() ⇒ <code>Promise</code>
-Remove this audioMixer from Snowmix
+Delete this audioMixer
 
 **Kind**: instance method of <code>[AudioMixer](#AudioMixer)</code>  
 <a name="AudioMixer+start"></a>
 
 ### audioMixer.start() ⇒ <code>Promise</code>
-Start the mixer. Will fail if there are no audioFeeds connecte
+Start the mixer. Will fail if there are no audioFeeds connected.
 (which you can do with addAudioFeed() method.)
+To tell if an AudioMixer is NOT started, check if 'state' is 'READY'
 
 **Kind**: instance method of <code>[AudioMixer](#AudioMixer)</code>  
 <a name="AudioMixer+addAudioFeed"></a>
@@ -333,6 +340,7 @@ Ensures the audioFeed(s) provided are the only ones that aren't muted
 Assign values to this item
 
 **Kind**: instance method of <code>[AudioMixer](#AudioMixer)</code>  
+**Access:** protected  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -348,16 +356,16 @@ A collection of all AudioMixers. (Note: it's rare you need more than 1!)
 **Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
 
 * [AudioMixers](#AudioMixers) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
-    * [.add(containing)](#AudioMixers+add)
+    * [.create(containing)](#AudioMixers+create)
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
     * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
-<a name="AudioMixers+add"></a>
+<a name="AudioMixers+create"></a>
 
-### audioMixers.add(containing)
-Add a new audio mixer.
+### audioMixers.create(containing)
+Create a new AudioMixer.
 Of, if an audio mixer of the specified ID is provided, updates it.
 
 **Kind**: instance method of <code>[AudioMixers](#AudioMixers)</code>  
@@ -407,20 +415,20 @@ An single audio sink
 **Extends:** <code>[SnowmixItem](#SnowmixItem)</code>  
 
 * [AudioSink](#AudioSink) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
-    * [.delete()](#AudioSink+remove) ⇒ <code>Promise</code>
+    * [.delete()](#AudioSink+delete) ⇒ <code>Promise</code>
     * [.addAudioMixer(audioMixer)](#AudioSink+addAudioMixer) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
 
-<a name="AudioSink+remove"></a>
+<a name="AudioSink+delete"></a>
 
 ### audioSink.delete() ⇒ <code>Promise</code>
-Remove this audioSink from Snowmix
+Delete this AudioSink
 
 **Kind**: instance method of <code>[AudioSink](#AudioSink)</code>  
 <a name="AudioSink+addAudioMixer"></a>
 
 ### audioSink.addAudioMixer(audioMixer) ⇒ <code>Promise</code>
-Add an audioMixer to this sink
+Add an AudioMixer to this AudioSink
 
 **Kind**: instance method of <code>[AudioSink](#AudioSink)</code>  
 
@@ -434,6 +442,7 @@ Add an audioMixer to this sink
 Assign values to this item
 
 **Kind**: instance method of <code>[AudioSink](#AudioSink)</code>  
+**Access:** protected  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -449,17 +458,17 @@ A collection of all AudioSinks. (Note: it's rare you need more than 1!)
 **Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
 
 * [AudioSinks](#AudioSinks) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
-    * [.add(containing)](#AudioSinks+add)
+    * [.create(containing)](#AudioSinks+create)
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
     * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
-<a name="AudioSinks+add"></a>
+<a name="AudioSinks+create"></a>
 
-### audioSinks.add(containing)
-Add a new audio sink.
-Of, if an audio sink of the specified ID is provided, updates it.
+### audioSinks.create(containing)
+Create a new AudioSink.
+Of, if an AudioSink of the specified ID is provided, updates it.
 
 **Kind**: instance method of <code>[AudioSinks](#AudioSinks)</code>  
 
@@ -513,6 +522,7 @@ snowmix.commands - handles the manipulation of Snowmix commands (aka functions)
     * [.list(commandName)](#SnowmixCommands+list) ⇒ <code>Promise</code>
     * [.create(commandName, Lines)](#SnowmixCommands+create) ⇒ <code>Promise</code>
     * [.delete(commandName)](#SnowmixCommands+delete) ⇒ <code>Promise</code>
+    * [.showing()](#SnowmixCommands+showing) ⇒ <code>Promise</code>
     * [.populateFromShowCommand()](#SnowmixCommands+populateFromShowCommand) ⇒ <code>Promise</code>
     * [.updateShowCommand()](#SnowmixCommands+updateShowCommand) ⇒ <code>Promise</code>
     * [.resetShowCommand()](#SnowmixCommands+resetShowCommand) ⇒ <code>Promise</code>
@@ -589,6 +599,12 @@ Note if the command does not exist it will create a warning
 | --- | --- |
 | commandName | <code>String</code> | 
 
+<a name="SnowmixCommands+showing"></a>
+
+### snowmixCommands.showing() ⇒ <code>Promise</code>
+Returns an object defining what the Show command is showing
+
+**Kind**: instance method of <code>[SnowmixCommands](#SnowmixCommands)</code>  
 <a name="SnowmixCommands+populateFromShowCommand"></a>
 
 ### snowmixCommands.populateFromShowCommand() ⇒ <code>Promise</code>
@@ -661,6 +677,7 @@ Switch the output to this feed.
 Assign values to this item
 
 **Kind**: instance method of <code>[Feed](#Feed)</code>  
+**Access:** protected  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -678,7 +695,7 @@ A collection of all (video) Feeds.
 
 * [Feeds](#Feeds) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
     * [.byId(ID)](#Feeds+byId) ⇒ <code>[Feed](#Feed)</code>
-    * [.add(containing)](#Feeds+add) ⇒ <code>[Feed](#Feed)</code>
+    * [.create(containing)](#Feeds+create) ⇒ <code>[Feed](#Feed)</code>
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.deleteAll()](#SnowmixItemCollection+deleteAll)
@@ -696,10 +713,10 @@ Get a feed by ID
 | --- | --- |
 | ID | <code>integer</code> | 
 
-<a name="Feeds+add"></a>
+<a name="Feeds+create"></a>
 
-### feeds.add(containing) ⇒ <code>[Feed](#Feed)</code>
-Add a new (video) feed, for when you have a new video source
+### feeds.create(containing) ⇒ <code>[Feed](#Feed)</code>
+AdCreated a new (video) feed, for when you have a new video source
 Or, if a video feed of the specified ID is provided, updates it.
 
 **Kind**: instance method of <code>[Feeds](#Feeds)</code>  
@@ -735,12 +752,29 @@ Remove all
 Handles the General commands: https://sourceforge.net/p/snowmix/wiki/Reference%20General/
 
 **Kind**: global class  
+
+* [General](#General)
+    * [.quit()](#General+quit)
+    * [.writeSnapshotImage(filename)](#General+writeSnapshotImage)
+
+<a name="General+quit"></a>
+
+### general.quit()
+Quit Snowmix.
+This is apparently better than killing Snowmix other ways (e.g. CTRL-C)
+See https://sourceforge.net/p/snowmix/wiki/Reference%20General/#quit
+
+**Kind**: instance method of <code>[General](#General)</code>  
+**Example**  
+```js
+snowmix.general.quit()
+```
 <a name="General+writeSnapshotImage"></a>
 
 ### general.writeSnapshotImage(filename)
 Take a snapshot of the image and write to file.
 Note this won't work unless there is something outputting the video,
-and also that there is something being ouptutted. Otherwise it willf fail silently.
+and also that there is something being ouptutted. Otherwise it will fail silently.
 
 **Kind**: instance method of <code>[General](#General)</code>  
 
@@ -768,7 +802,7 @@ An image, that can be overlayed on the video.
     * [.addPlace(of)](#Image+addPlace)
     * [.apply()](#Image+apply) ⇒ <code>Promise</code>
     * [.applyCommands()](#Image+applyCommands) ⇒ <code>String</code>
-    * [.delete()](#Image+remove) ⇒ <code>Promise</code>
+    * [.delete()](#Image+delete) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
 
 <a name="Image+places"></a>
@@ -802,10 +836,10 @@ An equivalent apply() method is available for the image places.
 ### image.applyCommands() ⇒ <code>String</code>
 **Kind**: instance method of <code>[Image](#Image)</code>  
 **Returns**: <code>String</code> - load command for this image  
-<a name="Image+remove"></a>
+<a name="Image+delete"></a>
 
 ### image.delete() ⇒ <code>Promise</code>
-Remove this image from Snowmix
+Delete this Image
 
 **Kind**: instance method of <code>[Image](#Image)</code>  
 <a name="SnowmixItem+assign"></a>
@@ -814,6 +848,7 @@ Remove this image from Snowmix
 Assign values to this item
 
 **Kind**: instance method of <code>[Image](#Image)</code>  
+**Access:** protected  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -824,6 +859,7 @@ Assign values to this item
 
 ## ImagePlace ⇐ <code>[VisibleItem](#VisibleItem)</code>
 An image placed on the video.
+https://sourceforge.net/p/snowmix/wiki/Reference%20Images/#image-place
 
 **Kind**: global class  
 **Extends:** <code>[VisibleItem](#VisibleItem)</code>  
@@ -845,7 +881,7 @@ An image placed on the video.
     * [.applyAndShow()](#ImagePlace+applyAndShow)
     * [.apply()](#ImagePlace+apply) ⇒ <code>Promise</code>
     * [.applyCommands()](#ImagePlace+applyCommands) ⇒ <code>String</code>
-    * [.delete()](#ImagePlace+remove) ⇒ <code>Promise</code>
+    * [.delete()](#ImagePlace+delete) ⇒ <code>Promise</code>
     * [.show()](#VisibleItem+show) ⇒ <code>Promise</code>
     * [.hide()](#VisibleItem+hide) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
@@ -873,10 +909,10 @@ Does not show or hide it (for that, use show() or hide())
 ### imagePlace.applyCommands() ⇒ <code>String</code>
 **Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
 **Returns**: <code>String</code> - the 'image place' command that will apply this place in Snowmix  
-<a name="ImagePlace+remove"></a>
+<a name="ImagePlace+delete"></a>
 
 ### imagePlace.delete() ⇒ <code>Promise</code>
-Remove this ImagePlace from Snowmix
+Delete this ImagePlace
 
 **Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
 <a name="VisibleItem+show"></a>
@@ -897,6 +933,7 @@ Hides the item. If already not showing, does nothing.
 Assign values to this item
 
 **Kind**: instance method of <code>[ImagePlace](#ImagePlace)</code>  
+**Access:** protected  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -913,6 +950,7 @@ A collection of all ImagePlaces (that is, places where images can go on the vide
 
 * [ImagePlaces](#ImagePlaces) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
     * [.getShowingIds()](#ImagePlaces+getShowingIds) ⇒ <code>array</code>
+    * [.create()](#ImagePlaces+create) ⇒ <code>[ImagePlace](#ImagePlace)</code>
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
@@ -922,6 +960,12 @@ A collection of all ImagePlaces (that is, places where images can go on the vide
 
 ### imagePlaces.getShowingIds() ⇒ <code>array</code>
 Returns the IDs of all Texts that are showing (visible).
+
+**Kind**: instance method of <code>[ImagePlaces](#ImagePlaces)</code>  
+<a name="ImagePlaces+create"></a>
+
+### imagePlaces.create() ⇒ <code>[ImagePlace](#ImagePlace)</code>
+Create a new image place. For ease, use image.addPlace()
 
 **Kind**: instance method of <code>[ImagePlaces](#ImagePlaces)</code>  
 <a name="SnowmixItemCollection+all"></a>
@@ -965,11 +1009,23 @@ Handles all images
 **Extends:** <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>  
 
 * [Images](#Images) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
+    * [.create()](#Images+create) ⇒ <code>Promise</code>
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
     * [.deleteAll()](#SnowmixItemCollection+deleteAll)
 
+<a name="Images+create"></a>
+
+### images.create() ⇒ <code>Promise</code>
+Create a new image
+
+**Kind**: instance method of <code>[Images](#Images)</code>  
+**Returns**: <code>Promise</code> - of {Image}  
+**Example**  
+```js
+snowmix.images.create({id: 1, filename: '/some/file.png'})
+```
 <a name="SnowmixItemCollection+all"></a>
 
 ### images.all() ⇒ <code>array</code>
@@ -1015,6 +1071,7 @@ Abstract superclass for a Snowmix item.
 Assign values to this item
 
 **Kind**: instance method of <code>[SnowmixItem](#SnowmixItem)</code>  
+**Access:** protected  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1147,6 +1204,7 @@ Hides the item. If already not showing, does nothing.
 Assign values to this item
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
+**Access:** protected  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1163,7 +1221,7 @@ Handles all texts
 
 * [Texts](#Texts) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
     * [.getShowingIds()](#Texts+getShowingIds) ⇒ <code>array</code>
-    * [.add(containing)](#Texts+add) ⇒ <code>Promise</code>
+    * [.create(containing)](#Texts+create) ⇒ <code>Promise</code>
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
@@ -1175,10 +1233,10 @@ Handles all texts
 Returns the IDs of all Texts that are showing (visible).
 
 **Kind**: instance method of <code>[Texts](#Texts)</code>  
-<a name="Texts+add"></a>
+<a name="Texts+create"></a>
 
-### texts.add(containing) ⇒ <code>Promise</code>
-Add a new text, or update an existing one if the ID exists.
+### texts.create(containing) ⇒ <code>Promise</code>
+Creates a new text, or update an existing one if the ID exists.
 
 **Kind**: instance method of <code>[Texts](#Texts)</code>  
 **Returns**: <code>Promise</code> - returning the created Text object  
@@ -1248,7 +1306,7 @@ A virtual video feed
 
 * [Vfeed](#Vfeed) ⇐ <code>[SnowmixItem](#SnowmixItem)</code>
     * [.getFeed()](#Vfeed+getFeed) ⇒ <code>[Feed](#Feed)</code>
-    * [.delete()](#Vfeed+remove) ⇒ <code>Promise</code>
+    * [.delete()](#Vfeed+delete) ⇒ <code>Promise</code>
     * [.switch()](#Vfeed+switch) ⇒ <code>Promise</code>
     * [.assign(new, track)](#SnowmixItem+assign)
 
@@ -1258,10 +1316,10 @@ A virtual video feed
 Returns the feed object that this virtual feed is for
 
 **Kind**: instance method of <code>[Vfeed](#Vfeed)</code>  
-<a name="Vfeed+remove"></a>
+<a name="Vfeed+delete"></a>
 
 ### vfeed.delete() ⇒ <code>Promise</code>
-Remove this vfeed from Snowmix
+Delete this Vfeed
 
 **Kind**: instance method of <code>[Vfeed](#Vfeed)</code>  
 <a name="Vfeed+switch"></a>
@@ -1276,6 +1334,7 @@ Switch the output to this feed.
 Assign values to this item
 
 **Kind**: instance method of <code>[Vfeed](#Vfeed)</code>  
+**Access:** protected  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1293,7 +1352,7 @@ snowmix.vfeeds - controls all vfeeds (virtual video feeds)
 
 * [Vfeeds](#Vfeeds) ⇐ <code>[SnowmixItemCollection](#SnowmixItemCollection)</code>
     * [.getShowingIds()](#Vfeeds+getShowingIds) ⇒ <code>array</code>
-    * [.add(containing)](#Vfeeds+add) ⇒ <code>[Vfeed](#Vfeed)</code>
+    * [.create(containing)](#Vfeeds+create) ⇒ <code>[Vfeed](#Vfeed)</code>
     * [.all()](#SnowmixItemCollection+all) ⇒ <code>array</code>
     * [.allIds()](#SnowmixItemCollection+allIds) ⇒ <code>array</code>
     * [.byId(id)](#SnowmixItemCollection+byId) ⇒
@@ -1305,10 +1364,10 @@ snowmix.vfeeds - controls all vfeeds (virtual video feeds)
 Returns the IDs of all Vfeeds that are showing (visible).
 
 **Kind**: instance method of <code>[Vfeeds](#Vfeeds)</code>  
-<a name="Vfeeds+add"></a>
+<a name="Vfeeds+create"></a>
 
-### vfeeds.add(containing) ⇒ <code>[Vfeed](#Vfeed)</code>
-Add a new vfeed
+### vfeeds.create(containing) ⇒ <code>[Vfeed](#Vfeed)</code>
+Create a new vfeed
 Or, if a vfeed of the specified ID is provided, updates it.
 
 **Kind**: instance method of <code>[Vfeeds](#Vfeeds)</code>  
@@ -1382,6 +1441,7 @@ Hides the item. If already not showing, does nothing.
 Assign values to this item
 
 **Kind**: instance method of <code>[VisibleItem](#VisibleItem)</code>  
+**Access:** protected  
 
 | Param | Type | Description |
 | --- | --- | --- |

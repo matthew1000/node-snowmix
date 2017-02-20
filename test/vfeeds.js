@@ -20,11 +20,11 @@ describe('Vfeeds', function() {
     })
 
     it('create a feed so that we can then make a vfeed', function() {
-        return snowmix.feeds.add({name: 'feed1', id: 1})
+        return snowmix.feeds.create({name: 'feed1', id: 1})
     })
 
     it('create vfeed #1', function() {
-        return snowmix.vfeeds.add({name: 'name1', sourceId: 1, source: 'feed'})
+        return snowmix.vfeeds.create({name: 'name1', sourceId: 1, source: 'feed'})
     })
 
     it('Should be one vfeed with all()', function() {
@@ -37,7 +37,7 @@ describe('Vfeeds', function() {
     })
 
     it('create vfeed #2', function() {
-        return snowmix.vfeeds.add({name: 'name2', sourceId: 1, source: 'feed'})
+        return snowmix.vfeeds.create({name: 'name2', sourceId: 1, source: 'feed'})
     })
 
     it('Should be 2 feeds with all()', function() {
@@ -50,7 +50,7 @@ describe('Vfeeds', function() {
     })
 
     it('change name of vfeed #2', function() {
-        return snowmix.vfeeds.add({name: 'new-name-for-2', id: 2})
+        return snowmix.vfeeds.create({name: 'new-name-for-2', id: 2})
     })
 
     it('check name has stuck and we haven\'t created a new feed', function() {

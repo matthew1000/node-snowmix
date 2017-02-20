@@ -18,10 +18,10 @@ describe('Audio feeds/mixers/sinks', function() {
 
     it('Create 2 new feeds feed, 1 mixer, and 1 sink', function() {
         return Promise.all([
-            snowmix.audioFeeds.add(),
-            snowmix.audioFeeds.add(),
-            snowmix.audioMixers.add(),
-            snowmix.audioSinks.add(),
+            snowmix.audioFeeds.create(),
+            snowmix.audioFeeds.create(),
+            snowmix.audioMixers.create(),
+            snowmix.audioSinks.create(),
         ])
     })
 

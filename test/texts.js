@@ -12,7 +12,7 @@ describe('Texts', function() {
     })
 
     it('should create text 1', function() {
-        return snowmix.texts.add({
+        return snowmix.texts.create({
             string: 'north-west',
             location: 'nw',
             offset: [200, 100]
@@ -29,7 +29,7 @@ describe('Texts', function() {
     })
 
     it('should show text 2', function() {
-        return snowmix.texts.add({
+        return snowmix.texts.create({
             string: 'north-east',
             location: 'ne',
         })
@@ -44,7 +44,7 @@ describe('Texts', function() {
     })
 
     it('should show text 3', function() {
-        return snowmix.texts.add({
+        return snowmix.texts.create({
             string: 'south-west',
             location: 'sw',
         })
@@ -54,7 +54,7 @@ describe('Texts', function() {
     })
 
     it('should show text 4', function() {
-        return snowmix.texts.add({
+        return snowmix.texts.create({
             string: 'south-east',
             location: 'se',
         })

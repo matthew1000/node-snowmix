@@ -20,7 +20,7 @@ describe('AudioFeeds', function() {
     })
 
     it('create audioFeed #1', function() {
-        return snowmix.audioFeeds.add({name: 'name1'})
+        return snowmix.audioFeeds.create({name: 'name1'})
     })
 
     it('Should be one audioFeed with all()', function() {
@@ -33,7 +33,7 @@ describe('AudioFeeds', function() {
     })
 
     it('create audioFeed #2', function() {
-        return snowmix.audioFeeds.add({name: 'name2'})
+        return snowmix.audioFeeds.create({name: 'name2'})
     })
 
     it('Should be 2 feeds with all()', function() {
@@ -46,7 +46,7 @@ describe('AudioFeeds', function() {
     })
 
     it('change name of audioFeed #2', function() {
-        return snowmix.audioFeeds.add({name: 'new-name-for-2', id: 2})
+        return snowmix.audioFeeds.create({name: 'new-name-for-2', id: 2})
     })
 
     it('check name has stuck and we haven\'t created a new feed', function() {

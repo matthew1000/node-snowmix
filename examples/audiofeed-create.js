@@ -10,7 +10,7 @@ let Snowmix = require('../node-snowmix'),
 
 snowmix.connect()
 .then(() => {
-    return snowmix.audioFeeds.add({name: name, id: id})
+    return snowmix.audioFeeds.create({name: name, id: id})
 }).then(audioFeed => {
     console.log(`Created audioFeed with id ${audioFeed.id} and name '${audioFeed.name}'`)
 }).finally(() => {

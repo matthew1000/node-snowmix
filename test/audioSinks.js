@@ -19,7 +19,7 @@ describe('AudioSinks', function() {
     })
 
     it('create audioSink #1', function() {
-        return snowmix.audioSinks.add({name: 'name1'})
+        return snowmix.audioSinks.create({name: 'name1'})
     })
 
     it('Should be one audioSink with all()', function() {
@@ -32,7 +32,7 @@ describe('AudioSinks', function() {
     })
 
     it('create audioSink #2', function() {
-        return snowmix.audioSinks.add({name: 'name2'})
+        return snowmix.audioSinks.create({name: 'name2'})
     })
 
     it('Should be 2 sinks with all()', function() {
@@ -45,7 +45,7 @@ describe('AudioSinks', function() {
     })
 
     it('change name of audioSink #2', function() {
-        return snowmix.audioSinks.add({name: 'new-name-for-2', id: 2})
+        return snowmix.audioSinks.create({name: 'new-name-for-2', id: 2})
     })
 
     it('check name has stuck and we haven\'t created a new audioSink', function() {

@@ -114,7 +114,7 @@ It is hoped to offer more flexible offers (e.g. volume control) in the future. U
 To overlay text on your video, create a 'Text' object, and then `show()` it.
 
 ```js
-var myText1 = snowmix.texts.add({ string: 'Snowmix is great!' })
+var myText1 = snowmix.texts.create({ string: 'Snowmix is great!' })
 myText1.show()
 .then(() => { ... })
 ```

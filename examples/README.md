@@ -4,9 +4,9 @@ This directory contains a number of examples to illustrate the node-snowmix libr
 
 ## A closer look at some examples
 
-*[rainbow-in-every-corner.js](./rainbow-in-every-corner.js)* creates an image in each corner of the screen, like this:
+*[image-in-every-corner.js](./image-in-every-corner.js)* creates an image in each corner of the screen, like this:
 
-![rainbow in each corner](./assets/rainbow-in-every-corner.png)
+![image in each corner](./assets/image-in-every-corner.png)
 
 *[text-lots-of-examples.js](./text-lots-of-examples.js)* creates a variety of text types, like this:
 

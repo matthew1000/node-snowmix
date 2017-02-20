@@ -1,11 +1,8 @@
 # Big-ticket items
 
-* Images - put rainbow example output somewhere
-* Consider renaming add() to create()
+* Consider renaming create() to create()
 * Create snowmix.applyShow() method
 * Command-line interface
-* Images - working example, auto-documenting
-* Texts - working example, auto-documenting
 * Further testing of AudioFeed/AudioMixer/AudioSink
 * Support of volume in AudioMixer
 * Ability to start Snowmix

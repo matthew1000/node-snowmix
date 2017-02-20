@@ -10,7 +10,7 @@ let Snowmix = require('../node-snowmix'),
 
 snowmix.connect()
 .then(() => {
-    return snowmix.audioSinks.add({name: name, id: id})
+    return snowmix.audioSinks.create({name: name, id: id})
 }).then(audioSink => {
     console.log(`Created audioSink with id ${audioSink.id} and name '${audioSink.name}'`)
 }).finally(() => {

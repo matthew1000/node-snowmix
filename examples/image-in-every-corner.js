@@ -6,11 +6,11 @@
 let Snowmix = require('../node-snowmix'),
     snowmix = Snowmix.new(),
     inputFile = __dirname + '/../examples/assets/rainbow-200.png',
-    outputFile = __dirname + '/../examples/assets/rainbow-in-every-corner.png'
+    outputFile = __dirname + '/../examples/assets/image-in-every-corner.png'
 
 snowmix.connect()
 .then(() => {
-    return snowmix.images.add({id: 1, filename: inputFile })
+    return snowmix.images.create({id: 1, filename: inputFile })
 }).then(image => {
     return Promise.all([
         image.addPlace({id: 1, x: 0, y: 0}),

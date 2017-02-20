@@ -19,7 +19,7 @@ describe('AudioMixers', function() {
     })
 
     it('create audioMixer #1', function() {
-        return snowmix.audioMixers.add({name: 'name1'})
+        return snowmix.audioMixers.create({name: 'name1'})
     })
 
     it('Should be one audioMixer with all()', function() {
@@ -32,7 +32,7 @@ describe('AudioMixers', function() {
     })
 
     it('create audioMixer #2', function() {
-        return snowmix.audioMixers.add({name: 'name2'})
+        return snowmix.audioMixers.create({name: 'name2'})
     })
 
     it('Should be 2 mixers with all()', function() {
@@ -45,7 +45,7 @@ describe('AudioMixers', function() {
     })
 
     it('change name of audioMixer #2', function() {
-        return snowmix.audioMixers.add({name: 'new-name-for-2', id: 2})
+        return snowmix.audioMixers.create({name: 'new-name-for-2', id: 2})
     })
 
     it('check name has stuck and we haven\'t created a new mixer', function() {
