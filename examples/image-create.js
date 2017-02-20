@@ -13,7 +13,7 @@ if (!filename) throw new Error('Please provide a id then the image filename (str
 
 snowmix.connect()
 .then(() => {
-    return snowmix.images.add({ id: id, filename: filename, x: 400 })
+    return snowmix.images.add({ id: id, filename: filename, x: 100 })
     .then(image => {
         return image.addPlace({x: 500, y: 200})
         .then(imagePlace => {

@@ -17,11 +17,12 @@ $ npm i --save node-snowmix
 
 ## Introduction
 
-Snowmix is a powerful video and audio mixer. This library helps you control Snowmix, and provides methods that make it easy to do common tasks, such as switching video and adding text.
+Snowmix is tool that's built on GStreamer. Snowmix allows the video & audio so that they can be mixed and changed in real-time. This library, node-snowmix, helps you control Snowmix, and provides methods that make it easy to do common tasks, such as switching video and adding text.
 
-This library models and provides helper functions for *feeds*, *vfeeds* (virtual feeds), *audio feeds*, and *texts*. Other things (e.g. images) can still be handled by sending the relevant Tcl commands.
+This library models and provides helper functions for *feeds*, *vfeeds* (virtual feeds), *audio feeds*, *texts*, and *images*. Other things (e.g. shapes) can still be handled by sending the relevant Tcl commands.
 
-This library does not currently help with the initial configuration of Snowmix, or with controlling the (gstreamer) inputs and outputs.
+This library does not currently start or stop Snowmix.
+Nor does it help control the (GStreamer) inputs and outputs, though there are some [example scripts](./scripts) to get you going.
 
 # Usage
 
@@ -67,12 +68,12 @@ snowmix.connect()
 })
 ```
 
-Helper functions around video, audio and text overlays are available, and summarised below.
+Helper functions around video, audio, text and images are available, and summarised below.
 
 ## Video control
 
 In an OO style, video feeds, and virtual video feeds, are given instances of the 'Feed' and 'Vfeed' class (respectively).
-These are automatically populated when this library first connects to Snowmix.
+Any existing feeds/vfeeds are automatically populated when this library first connects to Snowmix.
 
 Access feeds by ID using `snowmix.feeds.byId(<FEED ID>)`
 And likewise, vfeeds with `snowmix.vfeeds.byId(<VFEED ID>)`
@@ -94,8 +95,8 @@ snowmix.vfeeds.byId(1).switch()
 ```
 
 This is plain video switching - full-screen switching, nothing more.
-It is hoped to offer more powerful video switching, such as picture-in-picture, in the future.
-(In the mean time, you can use `sendCommand()` to access all of Snowmix's abilities.)
+(It is hoped to offer more powerful video switching, such as picture-in-picture, in the future.
+In the mean time, you can use `sendCommand()` to access all of Snowmix's abilities.)
 
 ## Audio control
 
@@ -120,7 +121,7 @@ myText1.show()
 
 By default, text will be shown in the bottom-left, black on a translucent grey background.
 
-All fields can be overridden, such as `x` and `y` (to set the location) and `location` (which can be one of `ne`, `nw`, `se`, ```sw```).
+All fields can be overridden, such as `x` and `y` (to set the location) and `location` (which can be one of `ne`, `nw`, `se`, `sw`).
 
 ## Full Documentation and tutorials...
 
@@ -128,7 +129,7 @@ All fields can be overridden, such as `x` and `y` (to set the location) and `loc
 
 ## Further examples...
 
-...can be found in the [examples/](./examples/) directory.
+...can be found in the [examples/](./examples) directory.
 
 ## Debugging (including seeing the commands & responses with Snowmix)
 

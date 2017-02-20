@@ -166,7 +166,7 @@ class Snowmix {
     }
 
     /**
-     * Close the connection to Snowmix. (Does not stop Snowmix.)
+     * Close the connection to Snowmix. (Does not stop Snowmix - for that use snowmix.general.close())
      *
      * @example snowmix.close().then(() => { console.log('All done') })
      */

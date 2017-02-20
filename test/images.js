@@ -78,17 +78,37 @@ describe('AudioFeeds', function() {
         })
     })
 
-    it('Show image place 2 and 3', function() {
-        return snowmix.imagePlaces.byId(2).show()
-        .then(() => { return snowmix.imagePlaces.byId(3).show() })
+    it('Show image place 3', function() {
+        return snowmix.imagePlaces.byId(3).show()
     })
 
     it('Check Show command is actually showing all 3 places', function() {
+        expect(snowmix.imagePlaces.byId(1).showing).to.equal(true)
+        expect(snowmix.imagePlaces.byId(2).showing).to.equal(false)
+        expect(snowmix.imagePlaces.byId(3).showing).to.equal(true)
         return snowmix.commands.list('Show')
         .then(cmds => {
-            console.log(cmds)
-            expect(cmds).to.contain('image overlay 1 2 3')
+            expect(cmds).to.contain('image overlay 1 3')
         })
+    })
+
+    it('Re-populate from Snowmix', function() {
+        return snowmix.images.populate()
+        .then(() => { return snowmix.imagePlaces.populate()})
+    })
+
+    it('check after re-populate that there is still 2 Images and 3 ImagePlaces', function() {
+        expect(snowmix.images.all()).to.have.length(2)
+        expect(snowmix.imagePlaces.all()).to.have.length(3)
+        expect(snowmix.imagePlaces.byId(1).image().id).to.equal(1)
+        expect(snowmix.imagePlaces.byId(2).image().id).to.equal(1)
+        expect(snowmix.imagePlaces.byId(3).image().id).to.equal(2)
+        expect(snowmix.images.byId(1).places()).to.have.length(2)
+        expect(snowmix.images.byId(2).places()).to.have.length(1)
+
+        expect(snowmix.imagePlaces.byId(1).showing).to.equal(true)
+        expect(snowmix.imagePlaces.byId(2).showing).to.equal(false)
+        expect(snowmix.imagePlaces.byId(3).showing).to.equal(true)
     })
 
     it('Remove the Images and ImagePlaces created', function() {
