@@ -28,7 +28,7 @@ You will need to leave Snowmix running, and switch to a second terminal window t
 
 Tell Snowmix you'd like a new video input feed with:
 
-    node-snowmix/examples/create-feed.js
+    node-snowmix/examples/feed-create.js
 
 You can confirm feed exists with:
 
@@ -66,7 +66,7 @@ We need to tell Snowmix to switch to the input we've provided.
 
 ## STEP 6: Switch the video
 
-    node-snowmix/examples/switch-video.js 1
+    node-snowmix/examples/video-switch.js 1
 
 You should now see video. Horrah!
 
@@ -76,7 +76,7 @@ Repeat steps *3* and *5* to create a second source.
 
 Now, switch between to this new source with:
 
-    node-snowmix/examples/switch-video.js 2
+    node-snowmix/examples/video-switch.js 2
 
 And then back and forth as much as you like.
 

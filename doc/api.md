@@ -1149,13 +1149,25 @@ A Text object (that can be placed on a video).
 **Extends:** <code>[VisibleItem](#VisibleItem)</code>  
 **Properties**
 
-| Name | Type |
-| --- | --- |
-| id | <code>integer</code> | 
-| string | <code>integer</code> | 
-| fontId | <code>integer</code> | 
-| anchor |  | 
-| offset |  | 
+| Name | Type | Description |
+| --- | --- | --- |
+| id | <code>integer</code> |  |
+| string | <code>integer</code> |  |
+| fontId | <code>integer</code> |  |
+| red | <code>float</code> | between 0 and 1 |
+| green | <code>float</code> | between 0 and 1 |
+| blue | <code>float</code> | between 0 and 1 |
+| alpha | <code>float</code> | between 0 and 1 |
+| backgroundRed | <code>float</code> | between 0 and 1 |
+| backgroundGreen | <code>float</code> | between 0 and 1 |
+| backgroundBlue | <code>float</code> | between 0 and 1 |
+| backgroundAlpha | <code>float</code> | between 0 and 1 |
+| backgroundLeftPad | <code>integer</code> | pixels padding of the background |
+| backgroundRightPad | <code>integer</code> | pixels padding of the background |
+| backgroundTopPad | <code>integer</code> | pixels padding of the background |
+| backgroundBottomPad | <code>integer</code> | pixels padding of the background |
+| anchor |  |  |
+| offset |  |  |
 
 
 * [Text](#Text) ⇐ <code>[VisibleItem](#VisibleItem)</code>
